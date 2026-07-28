@@ -49,7 +49,7 @@ export default async function RoomPage({ params }: { params: Promise<{ id: strin
             
             {/* Description & Amenities */}
             <div className="lg:w-2/3">
-              <Link href="/#rooms" className="text-primary hover:underline mb-8 inline-flex items-center font-medium">
+              <Link href="/divine-view#rooms" className="text-primary hover:underline mb-8 inline-flex items-center font-medium">
                 &larr; Back to all rooms
               </Link>
               
