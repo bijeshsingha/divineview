@@ -4,7 +4,7 @@ import { ROOMS } from "@/data/rooms";
 
 export default function Rooms() {
   return (
-    <section id="rooms" className="scroll-mt-20 bg-gray-50 min-h-[calc(100vh-5rem)] flex flex-col relative pb-16">
+    <section id="rooms" className="scroll-mt-20 bg-gray-50 min-h-[calc(100vh-5rem)] flex flex-col relative pb-24">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-6 lg:py-8">
         <div className="text-center mb-6">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
@@ -76,7 +76,7 @@ export default function Rooms() {
       </div>
 
       {/* Subtle Next Section Arrow */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex justify-center">
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex justify-center">
         <a href="#facilities" aria-label="Scroll to Facilities" className="text-gray-400 hover:text-primary transition-colors">
           <svg className="w-10 h-10 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
