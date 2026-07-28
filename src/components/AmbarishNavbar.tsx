@@ -3,37 +3,47 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function Navbar({ hotel }: { hotel?: "divine-view" | "ambarish" }) {
+export default function AmbarishNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Hotel Divine View", href: "/divine-view" },
-    { name: "Hotel Ambarish", href: "/ambarish" },
-    { name: "Tours", href: "/#explore" },
+    { name: "Rooms", href: "/ambarish#rooms" },
+    { name: "Dining & Bar", href: "/ambarish#dining" },
+    { name: "Events", href: "/ambarish#events" },
+    { name: "Wellness & Spa", href: "/ambarish#spa" },
+    { name: "Policies", href: "/policies" },
   ];
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+      <nav className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 shadow-sm transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
-            {/* Logo */}
-            <Link href="/" className="flex-shrink-0 flex items-center z-[60]" onClick={() => setIsOpen(false)}>
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold text-primary leading-none">
-                  Divine View
-                </span>
-                <span className="text-[0.65rem] text-primary tracking-[0.25em] uppercase mt-0.5 font-medium">
-                  Hotels & Tours
-                </span>
-              </div>
-            </Link>
+            
+            {/* Left side: Home Icon + Logo */}
+            <div className="flex items-center gap-4 z-[60]">
+              <Link href="/" className="text-gray-400 hover:text-white transition-colors" title="Back to Group Home">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+              </Link>
+              
+              <Link href="/ambarish" className="flex-shrink-0 flex items-center" onClick={() => setIsOpen(false)}>
+                <div className="flex flex-col">
+                  <span className="font-serif text-2xl font-bold text-white leading-none tracking-wide">
+                    Ambarish Grand
+                  </span>
+                  <span className="text-[0.65rem] text-gray-400 tracking-[0.3em] uppercase mt-0.5 font-medium">
+                    Residency
+                  </span>
+                </div>
+              </Link>
+            </div>
 
-            {/* Elegant Hamburger Button (Always visible) */}
+            {/* Elegant Hamburger Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-primary hover:text-primary-dark focus:outline-none p-2 z-[60] relative transition-transform duration-300"
+              className="text-white hover:text-gray-300 focus:outline-none p-2 z-[60] relative transition-transform duration-300"
               aria-label="Toggle menu"
             >
               <div className="w-8 h-6 flex flex-col justify-between items-end">
@@ -48,7 +58,7 @@ export default function Navbar({ hotel }: { hotel?: "divine-view" | "ambarish" }
 
       {/* Full Screen Overlay Menu */}
       <div 
-        className={`fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-xl transition-all duration-500 ease-in-out ${
           isOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
         }`}
       >
@@ -57,7 +67,6 @@ export default function Navbar({ hotel }: { hotel?: "divine-view" | "ambarish" }
             {navLinks.map((link, index) => {
               const isHashLink = link.href.includes("#");
               
-              // Staggered animation effect
               const style = {
                 transitionDelay: isOpen ? `${index * 75 + 100}ms` : '0ms',
                 transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
@@ -74,7 +83,7 @@ export default function Navbar({ hotel }: { hotel?: "divine-view" | "ambarish" }
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     style={style}
-                    className="text-3xl md:text-4xl font-serif text-gray-800 hover:text-primary transition-colors"
+                    className="text-3xl md:text-4xl font-serif text-white hover:text-gray-300 transition-colors"
                   >
                     {link.name}
                   </a>
@@ -86,7 +95,7 @@ export default function Navbar({ hotel }: { hotel?: "divine-view" | "ambarish" }
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   style={style}
-                  className="text-3xl md:text-4xl font-serif text-gray-800 hover:text-primary transition-colors"
+                  className="text-3xl md:text-4xl font-serif text-white hover:text-gray-300 transition-colors"
                 >
                   {link.name}
                 </Link>
@@ -94,7 +103,7 @@ export default function Navbar({ hotel }: { hotel?: "divine-view" | "ambarish" }
             })}
             
             <div 
-              className="mt-8 pt-10 border-t border-gray-200 w-full flex justify-center"
+              className="mt-8 pt-10 border-t border-gray-800 w-full flex justify-center"
               style={{
                 transitionDelay: isOpen ? `${navLinks.length * 75 + 200}ms` : '0ms',
                 transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
@@ -105,11 +114,11 @@ export default function Navbar({ hotel }: { hotel?: "divine-view" | "ambarish" }
               }}
             >
               <Link
-                href={hotel === "ambarish" ? "/ambarish/book" : "/book"}
+                href="/ambarish/book"
                 onClick={() => setIsOpen(false)}
-                className="bg-primary hover:bg-primary-dark text-white px-10 py-4 rounded-full font-bold text-xl transition-transform transform hover:-translate-y-1 shadow-lg hover:shadow-xl w-full text-center"
+                className="bg-white hover:bg-gray-200 text-black px-10 py-4 rounded-full font-bold text-xl transition-transform transform hover:-translate-y-1 shadow-lg hover:shadow-xl w-full text-center"
               >
-                Book Now
+                Book Your Stay
               </Link>
             </div>
           </div>

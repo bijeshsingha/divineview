@@ -16,7 +16,8 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
+              <li><Link href="/" className="hover:text-primary transition-colors">Main Home Page</Link></li>
+              <li><Link href="/ambarish" className="hover:text-primary transition-colors">Hotel Ambarish</Link></li>
               <li><Link href="/divine-view#rooms" className="hover:text-primary transition-colors">Rooms & Tariff</Link></li>
               <li><Link href="/divine-view#facilities" className="hover:text-primary transition-colors">Facilities</Link></li>
               <li><Link href="/#explore" className="hover:text-primary transition-colors">Explore Tours</Link></li>

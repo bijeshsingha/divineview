@@ -16,7 +16,8 @@ export default function AmbarishFooter() {
           <div>
             <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/" className="hover:text-primary transition-colors">Hotel Divine View</Link></li>
+              <li><Link href="/" className="hover:text-primary transition-colors">Main Home Page</Link></li>
+              <li><Link href="/divine-view" className="hover:text-primary transition-colors">Hotel Divine View</Link></li>
               <li><Link href="/ambarish#rooms" className="hover:text-primary transition-colors">Rooms & Suites</Link></li>
               <li><Link href="/ambarish#dining" className="hover:text-primary transition-colors">Restaurant & Bar</Link></li>
               <li><Link href="/ambarish#events" className="hover:text-primary transition-colors">Banquet & Meetings</Link></li>

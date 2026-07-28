@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import AmbarishNavbar from "@/components/AmbarishNavbar";
 import AmbarishFooter from "@/components/AmbarishFooter";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function AmbarishPage() {
   return (
     <>
-      <Navbar hotel="ambarish" />
+      <AmbarishNavbar />
       <main className="flex-grow bg-white">
         
         {/* HERO SECTION - FULL PAGE */}
@@ -91,14 +91,14 @@ export default function AmbarishPage() {
           </div>
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-gray-900 text-white">
             <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">Dining</span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8">International Restaurant</h2>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8">Multi-Cuisine Restaurant</h2>
             <div className="w-16 h-1 bg-secondary mb-10"></div>
             <p className="text-lg text-gray-300 mb-6 leading-relaxed font-light">
-              Start your day right with our complimentary free breakfast buffet. Later, enjoy a meal at our no-nonsense international restaurant offering exquisite table service.
+              Start your day right with our complimentary free breakfast buffet. Later, enjoy a meal at our multi-cuisine restaurant offering exquisite table service.
             </p>
             
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-200">
-              <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Free Breakfast Buffet</li>
+              <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Multi-Cuisine Menu</li>
               <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Exquisite Table Service</li>
             </ul>
           </div>
@@ -165,7 +165,7 @@ export default function AmbarishPage() {
         </section>
 
         {/* SPA - SPLIT SCREEN (REVERSED) */}
-        <section className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#f9f7f4]">
+        <section id="spa" className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#f9f7f4]">
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-1">
             <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Wellness</span>
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8">Spa & Relaxation</h2>

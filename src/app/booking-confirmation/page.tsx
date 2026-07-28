@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import Navbar from "@/components/Navbar";
+import PortalNavbar from "@/components/PortalNavbar";
 import PortalFooter from "@/components/PortalFooter";
 import Link from "next/link";
 
@@ -45,7 +45,7 @@ function ConfirmationContent() {
 export default function BookingConfirmationPage() {
   return (
     <>
-      <Navbar />
+      <PortalNavbar />
       <main className="flex-grow bg-[#FDFBF7] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Suspense fallback={<div className="text-center py-20 text-gray-500 font-medium">Loading confirmation details...</div>}>

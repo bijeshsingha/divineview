@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import PortalNavbar from "@/components/PortalNavbar";
 import Hero from "@/components/Hero";
 import Explore from "@/components/Explore";
 import Founders from "@/components/Founders";
@@ -7,7 +7,7 @@ import PortalFooter from "@/components/PortalFooter";
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <PortalNavbar />
       <main className="flex-grow">
         <Hero />
         {/* About Section */}

@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const data = await request.json();
+    // data contains: paymentId, orderId, cart (array of rooms), checkIn, checkOut, guestDetails
     
     // In production, this pushes data to the PMS (e.g. Hotelogix, Cloudbeds, etc)
     // For now, we simulate success and return a confirmation ID
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       reservationId,
-      message: "Reservation successfully synced with PMS."
+      message: `Reservation for ${data.cart?.length || 0} rooms successfully synced with PMS.`
     });
 
   } catch (error) {

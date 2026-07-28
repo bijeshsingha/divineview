@@ -2,7 +2,7 @@ import { AMBARISH_ROOMS } from "@/data/ambarishRooms";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
+import AmbarishNavbar from "@/components/AmbarishNavbar";
 import AmbarishFooter from "@/components/AmbarishFooter";
 
 export async function generateStaticParams() {
@@ -21,7 +21,7 @@ export default async function AmbarishRoomPage({ params }: { params: Promise<{ i
 
   return (
     <>
-      <Navbar hotel="ambarish" />
+      <AmbarishNavbar />
       <main className="flex-grow bg-gray-50 pb-20">
         {/* Room Hero */}
         <div className="relative h-[60vh] min-h-[400px] w-full">
@@ -94,9 +94,9 @@ export default async function AmbarishRoomPage({ params }: { params: Promise<{ i
                   </div>
                 </div>
 
-                <Link
+                <Link 
                   href={`/ambarish/book?room=${room.id}`}
-                  className="block w-full text-center bg-gray-900 hover:bg-primary text-white px-6 py-4 rounded-xl font-bold text-lg transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg"
+                  className="block w-full text-center bg-gray-900 hover:bg-black text-white px-6 py-4 rounded-xl font-bold text-lg transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg"
                 >
                   Book Now
                 </Link>

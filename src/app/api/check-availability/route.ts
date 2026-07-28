@@ -2,22 +2,26 @@ import { NextResponse } from 'next/server';
 import { ROOMS } from '@/data/rooms';
 import { AMBARISH_ROOMS } from '@/data/ambarishRooms';
 
+type CartItem = {
+  roomId: string;
+  name: string;
+  numRooms: number;
+  adults: number;
+  children: number;
+  price: number;
+};
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { roomId, checkIn, checkOut, numRooms, couponCode } = body;
+    const { cart, checkIn, checkOut, couponCode } = body;
 
-    if (!roomId || !checkIn || !checkOut || !numRooms) {
-      return NextResponse.json({ error: "Missing required parameters" }, { status: 400 });
+    if (!cart || !Array.isArray(cart) || cart.length === 0 || !checkIn || !checkOut) {
+      return NextResponse.json({ error: "Missing required parameters or empty cart" }, { status: 400 });
     }
 
     const allRooms = [...ROOMS, ...AMBARISH_ROOMS];
-    const room = allRooms.find(r => r.id === roomId);
     
-    if (!room) {
-      return NextResponse.json({ error: "Invalid room selected" }, { status: 404 });
-    }
-
     // Calculate nights
     const start = new Date(checkIn);
     const end = new Date(checkOut);
@@ -28,7 +32,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid dates selected" }, { status: 400 });
     }
 
-    const basePrice = parseInt(room.price) * numRooms * nights;
+    let basePrice = 0;
+
+    for (const item of cart as CartItem[]) {
+      const room = allRooms.find(r => r.id === item.roomId);
+      if (!room) {
+        return NextResponse.json({ error: `Invalid room selected: ${item.roomId}` }, { status: 404 });
+      }
+      basePrice += parseInt(room.price) * item.numRooms * nights;
+    }
+
     let discountAmount = 0;
     let appliedCoupon = null;
 
@@ -52,7 +65,6 @@ export async function POST(request: Request) {
     const totalPrice = basePrice - discountAmount;
 
     // Simulate real-time availability check (Randomly fails 5% of the time to feel real)
-    // For testing, we'll keep it mostly available.
     const isAvailable = Math.random() > 0.05;
 
     // Simulate network delay to make it feel like a real PMS connection
@@ -61,7 +73,7 @@ export async function POST(request: Request) {
     if (!isAvailable) {
       return NextResponse.json({ 
         available: false,
-        message: "Sorry, this room is sold out for the selected dates."
+        message: "Sorry, one or more rooms in your cart are sold out for the selected dates."
       });
     }
 
@@ -72,7 +84,7 @@ export async function POST(request: Request) {
       discountAmount,
       appliedCoupon,
       totalPrice,
-      message: "Room is available!"
+      message: "All rooms are available!"
     });
 
   } catch (error) {

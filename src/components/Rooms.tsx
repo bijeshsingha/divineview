@@ -24,7 +24,7 @@ export default function Rooms() {
             </p>
           </div>
           <Link
-            href="/book"
+            href="/divine-view/book"
             className="bg-white text-secondary hover:bg-gray-100 px-6 py-3 rounded-full font-bold transition-colors shadow-sm"
           >
             Claim Offer
@@ -56,13 +56,13 @@ export default function Rooms() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <Link
-                      href={`/rooms/${room.id}`}
+                      href={`/divine-view/rooms/${room.id}`}
                       className="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2.5 rounded-lg font-medium transition-colors"
                     >
                       View Details
                     </Link>
                     <Link
-                      href={`/book?room=${room.id}`}
+                      href={`/divine-view/book?room=${room.id}`}
                       className="block w-full text-center bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-lg font-medium transition-colors"
                     >
                       Book Now

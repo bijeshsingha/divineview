@@ -1,11 +1,11 @@
-import Navbar from "@/components/Navbar";
+import PortalNavbar from "@/components/PortalNavbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export default function PoliciesPage() {
   return (
     <>
-      <Navbar />
+      <PortalNavbar />
       <main className="flex-grow bg-gray-50 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">

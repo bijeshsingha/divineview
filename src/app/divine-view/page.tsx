@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import DivineViewNavbar from "@/components/DivineViewNavbar";
 import Rooms from "@/components/Rooms";
 import Facilities from "@/components/Facilities";
 import Reviews from "@/components/Reviews";
@@ -8,7 +8,7 @@ import Image from "next/image";
 export default function DivineView() {
   return (
     <>
-      <Navbar />
+      <DivineViewNavbar />
       <main className="flex-grow">
         {/* Elegant Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center">

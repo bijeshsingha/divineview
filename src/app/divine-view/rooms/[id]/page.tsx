@@ -2,7 +2,7 @@ import { ROOMS } from "@/data/rooms";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
+import DivineViewNavbar from "@/components/DivineViewNavbar";
 import Footer from "@/components/Footer";
 
 export async function generateStaticParams() {
@@ -21,7 +21,7 @@ export default async function RoomPage({ params }: { params: Promise<{ id: strin
 
   return (
     <>
-      <Navbar />
+      <DivineViewNavbar />
       <main className="flex-grow bg-gray-50 pb-20">
         {/* Room Hero */}
         <div className="relative h-[60vh] min-h-[400px] w-full">
@@ -96,8 +96,8 @@ export default async function RoomPage({ params }: { params: Promise<{ id: strin
                   </div>
                 </div>
 
-                <Link
-                  href={`/book?room=${room.id}`}
+                <Link 
+                  href={`/divine-view/book?room=${room.id}`}
                   className="block w-full text-center bg-primary hover:bg-primary-dark text-white px-6 py-4 rounded-xl font-bold text-lg transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg"
                 >
                   Book Now
