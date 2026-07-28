@@ -4,19 +4,22 @@ import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { ROOMS } from "@/data/rooms";
+import { AMBARISH_ROOMS } from "@/data/ambarishRooms";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 // Dummy keys for UI rendering. Replace in production!
 const RAZORPAY_KEY = "rzp_test_dummykey12345"; 
 
-export default function BookingFlow() {
+export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine-view" | "ambarish" }) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const initialRoom = searchParams.get("room") || ROOMS[0].id;
+  
+  const activeRooms = hotel === "ambarish" ? AMBARISH_ROOMS : ROOMS;
+  const initialRoom = searchParams.get("room") || activeRooms[0].id;
 
   const [selectedRoomId, setSelectedRoomId] = useState(initialRoom);
-  const selectedRoom = ROOMS.find(r => r.id === selectedRoomId) || ROOMS[0];
+  const selectedRoom = activeRooms.find(r => r.id === selectedRoomId) || activeRooms[0];
 
   const [checkIn, setCheckIn] = useState<Date | null>(new Date());
   
@@ -275,7 +278,7 @@ export default function BookingFlow() {
             <div>
               <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Select Room</label>
               <select value={selectedRoomId} onChange={e => setSelectedRoomId(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary bg-stone-50 font-medium text-gray-900 cursor-pointer">
-                {ROOMS.map(room => (
+                {activeRooms.map(room => (
                   <option key={room.id} value={room.id}>{room.name}</option>
                 ))}
               </select>

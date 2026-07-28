@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { ROOMS } from '@/data/rooms';
+import { AMBARISH_ROOMS } from '@/data/ambarishRooms';
 
 export async function POST(request: Request) {
   try {
@@ -10,7 +11,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required parameters" }, { status: 400 });
     }
 
-    const room = ROOMS.find(r => r.id === roomId);
+    const allRooms = [...ROOMS, ...AMBARISH_ROOMS];
+    const room = allRooms.find(r => r.id === roomId);
     
     if (!room) {
       return NextResponse.json({ error: "Invalid room selected" }, { status: 404 });

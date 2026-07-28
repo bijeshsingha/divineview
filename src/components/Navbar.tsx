@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar({ hotel }: { hotel?: "divine-view" | "ambarish" }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -105,7 +105,7 @@ export default function Navbar() {
               }}
             >
               <Link
-                href="/book"
+                href={hotel === "ambarish" ? "/ambarish/book" : "/book"}
                 onClick={() => setIsOpen(false)}
                 className="bg-primary hover:bg-primary-dark text-white px-10 py-4 rounded-full font-bold text-xl transition-transform transform hover:-translate-y-1 shadow-lg hover:shadow-xl w-full text-center"
               >
