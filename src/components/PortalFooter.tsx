@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function PortalFooter() {
   return (
-    <footer className="bg-white border-t border-gray-100 py-10 mt-auto">
+    <footer className="bg-gray-900 border-t border-gray-800 py-10 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
           
           {/* Logo / Brand */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <span className="font-serif text-2xl font-bold text-gray-900 leading-none">
+            <span className="font-serif text-2xl font-bold text-white leading-none">
               Divine View
             </span>
             <span className="text-[0.65rem] text-primary tracking-[0.25em] uppercase mt-1 font-medium">
@@ -33,7 +33,7 @@ export default function PortalFooter() {
           </div>
 
           {/* Copyright */}
-          <div className="text-sm text-gray-500 text-center md:text-right">
+          <div className="text-sm text-gray-400 text-center md:text-right">
             <p>&copy; {new Date().getFullYear()} Divine View Group.</p>
             <p>All rights reserved.</p>
           </div>

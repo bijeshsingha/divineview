@@ -84,106 +84,122 @@ export default function AmbarishPage() {
           </div>
         </section>
 
-        {/* RESTAURANT & BAR - SPLIT SCREEN */}
+        {/* RESTAURANT - SPLIT SCREEN */}
         <section id="dining" className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
           <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-1">
-            <Image src="/images/ambarish/restaurant1.jpeg" alt="Restaurant and Bar" fill className="object-cover" />
+            <Image src="/images/ambarish/restaurant1.jpeg" alt="Restaurant" fill className="object-cover" />
           </div>
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-gray-900 text-white">
             <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">Dining</span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8">Restaurant & Bar</h2>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8">International Restaurant</h2>
             <div className="w-16 h-1 bg-secondary mb-10"></div>
             <p className="text-lg text-gray-300 mb-6 leading-relaxed font-light">
               Start your day right with our complimentary free breakfast buffet. Later, enjoy a meal at our no-nonsense international restaurant offering exquisite table service.
             </p>
-            <p className="text-lg text-gray-300 mb-12 leading-relaxed font-light">
-              Unwind in the evening at our fully-stocked Bar, the perfect place for a social hour with friends or colleagues after a busy day in Guwahati.
-            </p>
             
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-200">
               <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Free Breakfast Buffet</li>
-              <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> International Restaurant</li>
-              <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Fully-Stocked Bar</li>
-              <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Social Hour</li>
+              <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Exquisite Table Service</li>
             </ul>
           </div>
         </section>
 
-        {/* BANQUET - SPLIT SCREEN (REVERSED) */}
-        <section id="events" className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gray-50">
+        {/* BAR - SPLIT SCREEN (REVERSED) */}
+        <section id="bar" className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gray-50">
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-1">
-            <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Events</span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8">Banquet & Meeting Hall</h2>
+            <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Lounge</span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8">The Hotel Bar</h2>
             <div className="w-16 h-1 bg-primary mb-10"></div>
             <p className="text-lg text-gray-600 mb-12 leading-relaxed font-light">
-              Host your next big event, corporate gathering, or celebration with us. Our expansive banquet hall and well-equipped meeting rooms are designed to cater to your specific business and event needs.
+              Unwind in the evening at our fully-stocked Bar. With warm amber lighting and a sophisticated atmosphere, it is the perfect place for a social hour with friends or colleagues after a busy day in Guwahati.
             </p>
             
-            <ul className="space-y-6 text-gray-800">
-              <li className="flex items-start">
-                <span className="text-primary mr-4 text-2xl mt-1">◇</span>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Corporate Meeting Rooms</h4>
-                  <p className="text-gray-500 font-light">Equipped for productivity.</p>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-4 text-2xl mt-1">◇</span>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Spacious Banquet Hall</h4>
-                  <p className="text-gray-500 font-light">Perfect for large celebrations.</p>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-4 text-2xl mt-1">◇</span>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Event Catering Options</h4>
-                  <p className="text-gray-500 font-light">Tailored menus for your guests.</p>
-                </div>
-              </li>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-800">
+              <li className="flex items-center"><span className="text-primary mr-4 text-xl">◇</span> Fully-Stocked Bar</li>
+              <li className="flex items-center"><span className="text-primary mr-4 text-xl">◇</span> Social Hour</li>
+              <li className="flex items-center"><span className="text-primary mr-4 text-xl">◇</span> Signature Cocktails</li>
             </ul>
           </div>
           <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-2">
-            <Image src="/images/ambarish/meeting room1.jpeg" alt="Banquet & Meeting Hall" fill className="object-cover" />
+            <Image src="/images/ambarish/bar1.png" alt="Hotel Bar" fill className="object-cover" />
           </div>
         </section>
 
-        {/* SPA - SPLIT SCREEN */}
-        <section className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
+        {/* BANQUET - SPLIT SCREEN */}
+        <section id="events" className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
           <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-1">
-            <Image src="/images/ambarish/spa1.png" alt="Spa and Wellness" fill className="object-cover" />
+            <Image src="/images/ambarish/meeting room1.jpeg" alt="Banquet & Meeting Hall" fill className="object-cover" />
           </div>
-          <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-[#f9f7f4]">
-            <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">Wellness</span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8">Spa & Relaxation</h2>
+          <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-gray-900 text-white">
+            <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">Events</span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8">Banquet & Meeting Hall</h2>
             <div className="w-16 h-1 bg-secondary mb-10"></div>
+            <p className="text-lg text-gray-300 mb-12 leading-relaxed font-light">
+              Host your next big event, corporate gathering, or celebration with us. Our expansive banquet hall and well-equipped meeting rooms are designed to cater to your specific business and event needs.
+            </p>
+            
+            <ul className="space-y-6 text-gray-200">
+              <li className="flex items-start">
+                <span className="text-secondary mr-4 text-2xl mt-1">✦</span>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Corporate Meeting Rooms</h4>
+                  <p className="text-gray-400 font-light">Equipped for productivity.</p>
+                </div>
+              </li>
+              <li className="flex items-start">
+                <span className="text-secondary mr-4 text-2xl mt-1">✦</span>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Spacious Banquet Hall</h4>
+                  <p className="text-gray-400 font-light">Perfect for large celebrations.</p>
+                </div>
+              </li>
+              <li className="flex items-start">
+                <span className="text-secondary mr-4 text-2xl mt-1">✦</span>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Event Catering Options</h4>
+                  <p className="text-gray-400 font-light">Tailored menus for your guests.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* SPA - SPLIT SCREEN (REVERSED) */}
+        <section className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#f9f7f4]">
+          <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-1">
+            <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Wellness</span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8">Spa & Relaxation</h2>
+            <div className="w-16 h-1 bg-primary mb-10"></div>
             <p className="text-lg text-gray-700 mb-12 leading-relaxed font-light">
               Treat yourself to a moment of tranquility and rejuvenation. Our dedicated spa services offer the perfect escape to relax your mind and body during your stay in Guwahati.
             </p>
             
             <ul className="space-y-6 text-gray-800">
               <li className="flex items-start">
-                <span className="text-secondary mr-4 text-2xl mt-1">❀</span>
+                <span className="text-primary mr-4 text-2xl mt-1">❀</span>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Relaxing Spa Treatments</h4>
                   <p className="text-gray-500 font-light">Custom therapies to melt stress away.</p>
                 </div>
               </li>
               <li className="flex items-start">
-                <span className="text-secondary mr-4 text-2xl mt-1">❀</span>
+                <span className="text-primary mr-4 text-2xl mt-1">❀</span>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Professional Therapists</h4>
                   <p className="text-gray-500 font-light">Expert care for your wellbeing.</p>
                 </div>
               </li>
               <li className="flex items-start">
-                <span className="text-secondary mr-4 text-2xl mt-1">❀</span>
+                <span className="text-primary mr-4 text-2xl mt-1">❀</span>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Peaceful Environment</h4>
                   <p className="text-gray-500 font-light">A serene escape from the city.</p>
                 </div>
               </li>
             </ul>
+          </div>
+          <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-2">
+            <Image src="/images/ambarish/spa1.png" alt="Spa and Wellness" fill className="object-cover" />
           </div>
         </section>
 
