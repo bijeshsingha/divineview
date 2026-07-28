@@ -17,7 +17,7 @@ const PACKAGES = [
 
 export default function Explore() {
   return (
-    <section id="explore" className="relative min-h-screen flex items-center justify-center bg-[url('/images/tours-bg.jpg')] bg-fixed bg-cover bg-center py-20">
+    <section id="explore" className="relative min-h-screen flex items-center justify-center bg-[url('/images/tours-bg.jpg')] bg-fixed bg-cover bg-center pt-20 pb-32">
       
       {/* Light elegant overlay for parallax effect */}
       <div className="absolute inset-0 bg-[#FDFBF7]/90 backdrop-blur-[2px] z-0" />
