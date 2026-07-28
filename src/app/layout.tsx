@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Hotel Divine View | Guwahati",
+  title: "Divine View | Guwahati",
   description: "Clean, affordable, and centrally located in the heart of Paltan Bazar—just steps from the Guwahati Railway Station.",
 };
 
