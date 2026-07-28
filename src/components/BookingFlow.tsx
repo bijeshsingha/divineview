@@ -286,7 +286,7 @@ export default function BookingFlow() {
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Check In</label>
                 <DatePicker 
                   selected={checkIn} 
-                  onChange={(date) => setCheckIn(date)} 
+                  onChange={(date: Date | null) => setCheckIn(date)} 
                   selectsStart 
                   startDate={checkIn} 
                   endDate={checkOut} 
@@ -298,7 +298,7 @@ export default function BookingFlow() {
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Check Out</label>
                 <DatePicker 
                   selected={checkOut} 
-                  onChange={(date) => setCheckOut(date)} 
+                  onChange={(date: Date | null) => setCheckOut(date)} 
                   selectsEnd 
                   startDate={checkIn} 
                   endDate={checkOut} 
