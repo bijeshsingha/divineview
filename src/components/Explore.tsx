@@ -6,12 +6,14 @@ const PACKAGES = [
     title: "Readymade Tour Packages",
     description: "Hassle-free, pre-designed itineraries. We handle everything from the vehicle to the stays and driver allowances, covering prime spots across Assam, Meghalaya, and Arunachal.",
     image: "/images/readymade-tour.jpg",
+    url: "https://www.divineviewtours.com/explore/packages",
   },
   {
     id: "custom",
     title: "Custom Itineraries",
     description: "For the seasoned traveler. You pick the places—from the valleys of Tawang to the roots bridges of Cherrapunji—and we calculate the optimal route, days, and cost.",
     image: "/images/custom-tour.jpg",
+    url: "https://www.divineviewtours.com/explore/custom",
   },
 ];
 
@@ -61,7 +63,7 @@ export default function Explore() {
                     </p>
                   </div>
                   <a
-                    href="https://divineviewtours.com"
+                    href={pkg.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-secondary hover:text-primary-dark font-medium transition-colors group-hover:underline decoration-2 underline-offset-4 uppercase text-sm tracking-wider"
