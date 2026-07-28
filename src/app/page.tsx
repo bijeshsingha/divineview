@@ -1,65 +1,48 @@
-import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Explore from "@/components/Explore";
+import Founders from "@/components/Founders";
+import PortalFooter from "@/components/PortalFooter";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Navbar />
+      <main className="flex-grow">
+        <Hero />
+        {/* About Section */}
+        <section id="about" className="relative min-h-screen bg-[#FDFBF7] flex items-center justify-center py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <p className="text-sm md:text-base text-secondary font-medium tracking-[0.3em] uppercase mb-6">
+              Our Story
+            </p>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-8 leading-tight">
+              About Divine View Group
+            </h2>
+            <div className="w-16 h-[2px] bg-secondary mx-auto mb-10"></div>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-6 font-light">
+              At Divine View, we believe in offering an unparalleled hospitality experience in the heart of the Northeast. 
+              Our properties are meticulously designed to provide comfort, elegance, and convenience to every traveler.
+            </p>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light">
+              Whether you are visiting for business, leisure, or embarking on a grand tour of Meghalaya, 
+              our dedicated team ensures your stay is nothing short of divine.
+            </p>
+          </div>
+
+          {/* Bouncing Down Arrow */}
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+            <a href="#explore" aria-label="Scroll down" className="text-secondary opacity-80 hover:opacity-100 transition-opacity">
+              <svg className="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </a>
+          </div>
+        </section>
+        <Explore />
+        <Founders />
       </main>
-    </div>
+      <PortalFooter />
+    </>
   );
 }
