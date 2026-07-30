@@ -18,7 +18,7 @@ export default function AmbarishPage() {
             <p className="text-sm md:text-base text-secondary font-medium tracking-[0.3em] uppercase mb-4 drop-shadow-md">Welcome to</p>
             <h1 className="sr-only">Hotel Ambarish Grand Residency</h1>
             <div className="relative w-[90vw] max-w-4xl h-32 md:h-48 lg:h-64 mb-6 drop-shadow-2xl">
-              <Image src="/images/ambarish-logo.svg" alt="Hotel Ambarish Grand Residency" fill className="object-contain" priority />
+              <Image src="/images/ambarish-logo.png" alt="Hotel Ambarish Grand Residency" fill className="object-contain" priority />
             </div>
             <div className="w-24 h-1 bg-secondary mx-auto mb-8 rounded-full shadow-lg"></div>
             <p className="text-xl md:text-2xl drop-shadow-md max-w-2xl text-center font-light mb-10">Unpretentious Comfort & Prime Location in Guwahati</p>
