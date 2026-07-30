@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ROOMS } from "@/data/rooms";
+import { Card } from "./ui/Card";
+import { Button } from "./ui/Button";
 
 export default function Rooms() {
   return (
@@ -23,21 +25,23 @@ export default function Rooms() {
               Use Coupon Code <span className="font-bold font-mono text-white">SM30OF</span> for a 30% Discount!
             </p>
           </div>
-          <Link
+          <Button
             href="/divine-view/book"
-            className="bg-white text-secondary hover:bg-gray-100 px-6 py-3 rounded-full font-bold transition-colors shadow-sm"
+            variant="outline"
+            className="bg-white text-secondary hover:bg-gray-100 border-none shadow-sm rounded-full px-6 py-3 font-bold"
           >
             Claim Offer
-          </Link>
+          </Button>
         </div>
 
         {/* Rooms Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {ROOMS.map((room) => {
             return (
-              <div
+              <Card
                 key={room.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col"
+                className="overflow-hidden flex flex-col"
+                hoverEffect
               >
                 <div className="relative h-40 w-full">
                   <Image
@@ -55,21 +59,23 @@ export default function Rooms() {
                     Rs. {room.price}<span className="text-sm text-gray-500 font-normal">/night</span>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <Link
+                    <Button
                       href={`/divine-view/rooms/${room.id}`}
-                      className="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2.5 rounded-lg font-medium transition-colors"
+                      variant="outline"
+                      fullWidth
                     >
                       View Details
-                    </Link>
-                    <Link
+                    </Button>
+                    <Button
                       href={`/divine-view/book?room=${room.id}`}
-                      className="block w-full text-center bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-lg font-medium transition-colors"
+                      variant="primary"
+                      fullWidth
                     >
                       Book Now
-                    </Link>
+                    </Button>
                   </div>
                 </div>
-              </div>
+              </Card>
             );
           })}
         </div>

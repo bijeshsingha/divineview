@@ -1,7 +1,9 @@
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import AmbarishNavbar from "@/components/AmbarishNavbar";
 import AmbarishFooter from "@/components/AmbarishFooter";
-import BookingFlow from "@/components/BookingFlow";
+
+const BookingFlow = dynamic(() => import("@/components/BookingFlow"));
 
 export default function AmbarishBookPage() {
   return (

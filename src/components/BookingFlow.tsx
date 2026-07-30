@@ -8,6 +8,9 @@ import { ROOMS } from "@/data/rooms";
 import { AMBARISH_ROOMS } from "@/data/ambarishRooms";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Card } from "./ui/Card";
+import { Button } from "./ui/Button";
+import { Input } from "./ui/Input";
 
 // Dummy keys for UI rendering. Replace in production!
 const RAZORPAY_KEY = "rzp_test_dummykey12345"; 
@@ -21,7 +24,20 @@ type CartItem = {
   price: number;
 };
 
+const Counter = ({ label, value, onChange, min = 0 }: any) => (
+  <div className="flex flex-col items-center">
+    <span className="text-[10px] uppercase font-bold text-gray-500 mb-1">{label}</span>
+    <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white">
+      <button type="button" onClick={() => onChange(value - 1)} disabled={value <= min} className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent font-medium transition-colors">−</button>
+      <span className="w-6 text-center text-sm font-bold text-gray-900">{value}</span>
+      <button type="button" onClick={() => onChange(value + 1)} className="px-3 py-1 text-gray-600 hover:bg-gray-100 font-medium transition-colors">+</button>
+    </div>
+  </div>
+);
+
 export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine-view" | "ambarish" }) {
+  const [isMounted, setIsMounted] = useState(false);
+  
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -46,6 +62,8 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
 
   // Hydrate state from sessionStorage
   useEffect(() => {
+    setIsMounted(true);
+    
     const savedCart = sessionStorage.getItem(`cart_${hotel}`);
     if (savedCart) {
       try { setCart(JSON.parse(savedCart)); } catch (e) {}
@@ -245,6 +263,10 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
   const hoverColor = hotel === "ambarish" ? "hover:bg-black" : "hover:bg-primary-dark";
   const textHotelColor = hotel === "ambarish" ? "text-gray-900" : "text-primary";
 
+  if (!isMounted) {
+    return <div className="text-center py-20 text-gray-500 font-medium">Loading booking engine...</div>;
+  }
+
   return (
     <div className="w-full">
       {/* Back Button */}
@@ -261,14 +283,19 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
         <div className="w-full lg:w-[70%] space-y-8">
           
           {/* STEP 1: DATES */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+          <Card className="p-6 md:p-8">
             <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6">1. Select Dates</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2">Check In</label>
                 <DatePicker 
                   selected={checkIn} 
-                  onChange={(date: Date | null) => setCheckIn(date)} 
+                  onChange={(date: Date | null) => {
+                    setCheckIn(date);
+                    if (date && checkOut && date >= checkOut) {
+                      setCheckOut(new Date(date.getTime() + 86400000));
+                    }
+                  }} 
                   selectsStart 
                   startDate={checkIn} 
                   endDate={checkOut} 
@@ -285,16 +312,16 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                   selectsEnd 
                   startDate={checkIn} 
                   endDate={checkOut} 
-                  minDate={checkIn || new Date()}
+                  minDate={checkIn ? new Date(checkIn.getTime() + 86400000) : new Date(new Date().getTime() + 86400000)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
                   dateFormat="MMMM d, yyyy"
                 />
               </div>
             </div>
-          </div>
+          </Card>
 
           {/* STEP 2: AVAILABLE ROOMS */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+          <Card className="p-6 md:p-8">
             <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6 flex items-center">
               2. Choose Your Rooms
               {nights > 0 && <span className="ml-4 text-sm font-normal text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{nights} Night(s)</span>}
@@ -331,25 +358,20 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                         </div>
 
                         {/* Add to Cart Config */}
-                        <div className="flex flex-wrap items-end gap-4 mt-auto pt-4 border-t border-gray-200">
-                          <div>
-                            <label className="block text-xs font-bold text-gray-500 mb-1">Rooms</label>
-                            <input type="number" min="1" value={inputs.rooms} onChange={(e) => handleRoomInput(room.id, "rooms", Number(e.target.value))} className="w-16 px-2 py-1 border border-gray-300 rounded text-center" />
+                        <div className="flex flex-wrap items-end justify-between gap-4 mt-auto pt-4 border-t border-gray-200">
+                          <div className="flex gap-2 sm:gap-4">
+                            <Counter label="Rooms" min={1} value={inputs.rooms} onChange={(val: number) => handleRoomInput(room.id, "rooms", val)} />
+                            <Counter label="Adults" min={1} value={inputs.adults} onChange={(val: number) => handleRoomInput(room.id, "adults", val)} />
+                            <Counter label="Child" min={0} value={inputs.children} onChange={(val: number) => handleRoomInput(room.id, "children", val)} />
                           </div>
-                          <div>
-                            <label className="block text-xs font-bold text-gray-500 mb-1">Adults</label>
-                            <input type="number" min="1" value={inputs.adults} onChange={(e) => handleRoomInput(room.id, "adults", Number(e.target.value))} className="w-16 px-2 py-1 border border-gray-300 rounded text-center" />
-                          </div>
-                          <div>
-                            <label className="block text-xs font-bold text-gray-500 mb-1">Child</label>
-                            <input type="number" min="0" value={inputs.children} onChange={(e) => handleRoomInput(room.id, "children", Number(e.target.value))} className="w-16 px-2 py-1 border border-gray-300 rounded text-center" />
-                          </div>
-                          <button 
+                          
+                          <Button 
                             onClick={() => addToCart(room)}
-                            className={`ml-auto ${hotelColor} ${hoverColor} text-white px-6 py-2 rounded-lg font-bold text-sm shadow-sm transition-colors`}
+                            className={`${hotel === "ambarish" ? "bg-gray-900 hover:bg-black" : "bg-primary hover:bg-primary-dark"} text-white whitespace-nowrap mb-0.5`}
+                            size="sm"
                           >
                             Add to Cart
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -357,27 +379,20 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 })}
               </div>
             )}
-          </div>
+          </Card>
 
           {/* STEP 3: GUEST DETAILS */}
           {cart.length > 0 && (
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <Card className="p-6 md:p-8">
               <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6">3. Guest Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                  <input required type="text" value={guestName} onChange={e => setGuestName(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary" placeholder="John Doe" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
-                  <input required type="tel" value={guestPhone} onChange={e => setGuestPhone(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary" placeholder="+91 98765 43210" />
-                </div>
+                <Input required label="Full Name *" type="text" value={guestName} onChange={e => setGuestName(e.target.value)} placeholder="John Doe" />
+                <Input required label="Phone Number *" type="tel" value={guestPhone} onChange={e => setGuestPhone(e.target.value)} placeholder="+91 98765 43210" />
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                  <input type="email" value={guestEmail} onChange={e => setGuestEmail(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary" placeholder="john@example.com (For your receipt)" />
+                  <Input label="Email Address" type="email" value={guestEmail} onChange={e => setGuestEmail(e.target.value)} placeholder="john@example.com (For your receipt)" />
                 </div>
               </div>
-            </div>
+            </Card>
           )}
 
           <div className="h-24 lg:hidden"></div>
@@ -385,7 +400,7 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
 
         {/* RIGHT COLUMN: 30% (Sticky Cart Widget) */}
         <div className="hidden lg:block w-[30%] relative">
-          <div className="sticky top-24 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 flex flex-col gap-6">
+          <Card className="sticky top-24 p-6 flex flex-col gap-6 shadow-xl border-gray-200">
             <h3 className="text-xl font-bold text-gray-900 border-b border-gray-100 pb-4">Your Cart</h3>
             
             <div className="space-y-4">
@@ -427,21 +442,22 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
               )}
 
               {/* CTA */}
-              <button 
+              <Button 
                 onClick={handlePayment} 
                 disabled={isProcessing || cart.length === 0 || nights === 0} 
-                className={`w-full font-bold py-4 rounded-xl shadow-lg transition-all flex justify-center items-center mt-2 
-                  ${cart.length === 0 || nights === 0 ? "bg-gray-300 text-gray-500 cursor-not-allowed" : `${hotelColor} hover:${hoverColor} text-white`}`}
+                className={`mt-2 ${hotel === "ambarish" ? "bg-gray-900 hover:bg-black" : ""}`}
+                fullWidth
+                size="lg"
               >
                 {isProcessing ? "Processing..." : "Proceed to Pay"}
-              </button>
+              </Button>
               
               <p className="text-xs text-center text-gray-400 mt-2 flex items-center justify-center">
                 <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
                 Secure 256-bit encrypted checkout
               </p>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
 

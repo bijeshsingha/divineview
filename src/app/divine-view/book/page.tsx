@@ -1,7 +1,9 @@
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import DivineViewNavbar from "@/components/DivineViewNavbar";
-import PortalFooter from "@/components/PortalFooter";
-import BookingFlow from "@/components/BookingFlow";
+import Footer from "@/components/Footer";
+
+const BookingFlow = dynamic(() => import("@/components/BookingFlow"));
 
 export default function BookPage() {
   return (
@@ -14,7 +16,7 @@ export default function BookPage() {
           </Suspense>
         </div>
       </main>
-      <PortalFooter />
+      <Footer />
     </>
   );
 }

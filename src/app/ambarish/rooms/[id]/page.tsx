@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { AMBARISH_ROOMS } from "@/data/ambarishRooms";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -11,6 +12,22 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const room = AMBARISH_ROOMS.find((r) => r.id === id);
+  
+  if (!room) {
+    return {
+      title: "Room Not Found | Hotel Ambarish"
+    };
+  }
+
+  return {
+    title: `${room.name} | Hotel Ambarish`,
+    description: room.shortDescription,
+  };
+}
+
 export default async function AmbarishRoomPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const room = AMBARISH_ROOMS.find((r) => r.id === id);
@@ -19,8 +36,28 @@ export default async function AmbarishRoomPage({ params }: { params: Promise<{ i
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": room.name,
+    "description": room.shortDescription,
+    "image": `https://hoteldivineview.com${room.heroImage}`,
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "INR",
+      "price": room.price,
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   return (
     <>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <AmbarishNavbar />
       <main className="flex-grow bg-gray-50 pb-20">
         {/* Room Hero */}
