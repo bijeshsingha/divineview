@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AmbarishNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,13 +30,14 @@ export default function AmbarishNavbar() {
               </Link>
               
               <Link href="/ambarish" className="flex-shrink-0 flex items-center" onClick={() => setIsOpen(false)}>
-                <div className="flex flex-col">
-                  <span className="font-serif text-2xl font-bold text-white leading-none tracking-wide">
-                    Ambarish Grand
-                  </span>
-                  <span className="text-[0.65rem] text-gray-400 tracking-[0.3em] uppercase mt-0.5 font-medium">
-                    Residency
-                  </span>
+                <div className="relative h-12 w-48 sm:w-60">
+                  <Image 
+                    src="/images/ambarish-logo.png" 
+                    alt="Ambarish Grand Residency" 
+                    fill 
+                    className="object-contain object-left" 
+                    priority 
+                  />
                 </div>
               </Link>
             </div>
