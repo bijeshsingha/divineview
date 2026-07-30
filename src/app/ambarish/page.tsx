@@ -88,7 +88,7 @@ export default function AmbarishPage() {
         {/* RESTAURANT - SPLIT SCREEN */}
         <section id="dining" className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
           <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-1">
-            <Image src="/images/ambarish/restaurant1.jpeg" alt="Restaurant" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            <Image src="/images/ambarish/restaurant2.jpeg" alt="Restaurant" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
           </div>
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-gray-900 text-white">
             <span className="text-amber-200 font-bold tracking-widest uppercase text-sm mb-4 block">Dining</span>
