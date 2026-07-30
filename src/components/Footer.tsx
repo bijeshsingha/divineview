@@ -14,7 +14,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+            <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/" className="hover:text-primary transition-colors">Main Home Page</Link></li>
               <li><Link href="/ambarish" className="hover:text-primary transition-colors">Hotel Ambarish</Link></li>
@@ -25,7 +25,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Contact Us</h4>
+            <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Contact Us</h3>
             <address className="not-italic text-sm space-y-2">
               <p>Paltan Bazar, Near Guwahati Railway Station</p>
               <p>Guwahati, Assam, India</p>

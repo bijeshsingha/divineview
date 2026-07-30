@@ -90,7 +90,7 @@ export default function AmbarishPage() {
             <Image src="/images/ambarish/restaurant1.jpeg" alt="Restaurant" fill className="object-cover" />
           </div>
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-gray-900 text-white">
-            <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">Dining</span>
+            <span className="text-amber-200 font-bold tracking-widest uppercase text-sm mb-4 block">Dining</span>
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8">Multi-Cuisine Restaurant</h2>
             <div className="w-16 h-1 bg-secondary mb-10"></div>
             <p className="text-lg text-gray-300 mb-6 leading-relaxed font-light">
@@ -131,7 +131,7 @@ export default function AmbarishPage() {
             <Image src="/images/ambarish/meeting room1.jpeg" alt="Banquet & Meeting Hall" fill className="object-cover" />
           </div>
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-gray-900 text-white">
-            <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">Events</span>
+            <span className="text-amber-200 font-bold tracking-widest uppercase text-sm mb-4 block">Events</span>
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8">Banquet & Meeting Hall</h2>
             <div className="w-16 h-1 bg-secondary mb-10"></div>
             <p className="text-lg text-gray-300 mb-12 leading-relaxed font-light">
@@ -140,23 +140,23 @@ export default function AmbarishPage() {
             
             <ul className="space-y-6 text-gray-200">
               <li className="flex items-start">
-                <span className="text-secondary mr-4 text-2xl mt-1">✦</span>
+                <span className="text-amber-200 mr-4 text-2xl mt-1">✦</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-1">Corporate Meeting Rooms</h4>
+                  <h3 className="font-bold text-xl mb-1">Corporate Meeting Rooms</h3>
                   <p className="text-gray-400 font-light">Equipped for productivity.</p>
                 </div>
               </li>
               <li className="flex items-start">
-                <span className="text-secondary mr-4 text-2xl mt-1">✦</span>
+                <span className="text-amber-200 mr-4 text-2xl mt-1">✦</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-1">Spacious Banquet Hall</h4>
+                  <h3 className="font-bold text-xl mb-1">Spacious Banquet Hall</h3>
                   <p className="text-gray-400 font-light">Perfect for large celebrations.</p>
                 </div>
               </li>
               <li className="flex items-start">
-                <span className="text-secondary mr-4 text-2xl mt-1">✦</span>
+                <span className="text-amber-200 mr-4 text-2xl mt-1">✦</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-1">Event Catering Options</h4>
+                  <h3 className="font-bold text-xl mb-1">Event Catering Options</h3>
                   <p className="text-gray-400 font-light">Tailored menus for your guests.</p>
                 </div>
               </li>
@@ -178,21 +178,21 @@ export default function AmbarishPage() {
               <li className="flex items-start">
                 <span className="text-primary mr-4 text-2xl mt-1">❀</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-1">Relaxing Spa Treatments</h4>
+                  <h3 className="font-bold text-xl mb-1">Relaxing Spa Treatments</h3>
                   <p className="text-gray-500 font-light">Custom therapies to melt stress away.</p>
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-4 text-2xl mt-1">❀</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-1">Professional Therapists</h4>
+                  <h3 className="font-bold text-xl mb-1">Professional Therapists</h3>
                   <p className="text-gray-500 font-light">Expert care for your wellbeing.</p>
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-4 text-2xl mt-1">❀</span>
                 <div>
-                  <h4 className="font-bold text-xl mb-1">Peaceful Environment</h4>
+                  <h3 className="font-bold text-xl mb-1">Peaceful Environment</h3>
                   <p className="text-gray-500 font-light">A serene escape from the city.</p>
                 </div>
               </li>
@@ -215,7 +215,7 @@ export default function AmbarishPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-6">🌟</div>
-                <h4 className="text-xl font-bold text-gray-900 mb-6">Popular</h4>
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Popular</h3>
                 <ul className="space-y-4 text-gray-600 font-light">
                   <li className="flex items-center">✓ Free Wi-Fi</li>
                   <li className="flex items-center">✓ Free Self Parking</li>
@@ -227,7 +227,7 @@ export default function AmbarishPage() {
               </div>
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
                 <div className="w-14 h-14 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-2xl mb-6">🛎️</div>
-                <h4 className="text-xl font-bold text-gray-900 mb-6">Services</h4>
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Services</h3>
                 <ul className="space-y-4 text-gray-600 font-light">
                   <li className="flex items-center">✓ 24-hour Front desk</li>
                   <li className="flex items-center">✓ Baggage storage</li>
@@ -239,7 +239,7 @@ export default function AmbarishPage() {
               </div>
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-6">🚗</div>
-                <h4 className="text-xl font-bold text-gray-900 mb-6">Transport</h4>
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Transport</h3>
                 <ul className="space-y-4 text-gray-600 font-light">
                   <li className="flex items-center">✓ Free Parking Onsite</li>
                   <li className="flex items-center">✓ Local Shuttle</li>
@@ -249,7 +249,7 @@ export default function AmbarishPage() {
               </div>
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
                 <div className="w-14 h-14 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-2xl mb-6">🚿</div>
-                <h4 className="text-xl font-bold text-gray-900 mb-6">Rooms</h4>
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Rooms</h3>
                 <ul className="space-y-4 text-gray-600 font-light">
                   <li className="flex items-center">✓ Private bathroom</li>
                   <li className="flex items-center">✓ Bathtub in some rooms</li>
