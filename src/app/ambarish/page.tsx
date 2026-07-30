@@ -16,7 +16,7 @@ export default function AmbarishPage() {
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
             <p className="text-sm md:text-base text-secondary font-medium tracking-[0.3em] uppercase mb-4 drop-shadow-md">Welcome to</p>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-center drop-shadow-lg max-w-5xl leading-tight">Hotel Ambarish Grand Residency</h1>
+            <h1 className="text-4xl md:text-6xl lg:text-[5.5rem] mb-6 text-center drop-shadow-lg max-w-5xl leading-tight tracking-wide" style={{ fontFamily: "var(--font-alfa-slab), 'Clarendon', serif", fontWeight: 400 }}>AMBARISH GRAND RESIDENCY</h1>
             <div className="w-24 h-1 bg-secondary mx-auto mb-8 rounded-full shadow-lg"></div>
             <p className="text-xl md:text-2xl drop-shadow-md max-w-2xl text-center font-light mb-10">Unpretentious Comfort & Prime Location in Guwahati</p>
             <div className="flex flex-col sm:flex-row gap-4">
