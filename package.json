@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@next/third-parties": "^16.2.12",
     "next": "16.2.12",
     "razorpay": "^2.9.8",
     "react": "19.2.4",
