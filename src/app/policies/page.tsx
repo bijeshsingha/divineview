@@ -59,31 +59,52 @@ export default function PoliciesPage() {
             <div className="p-8 md:p-10 border-b border-gray-100 bg-gray-50/50">
               <div className="flex items-center mb-6">
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-secondary/10 text-secondary font-bold text-xl mr-4">2</span>
-                <h2 className="text-2xl font-serif font-bold text-gray-900">Cancellation & Refund Policy</h2>
+                <h2 className="text-2xl font-serif font-bold text-gray-900">Cancellation Policy</h2>
               </div>
+              <p className="text-gray-700 mb-6">
+                We understand that travel plans may change. Our cancellation policy is designed to provide flexibility while ensuring efficient room management.
+              </p>
               <ul className="space-y-6 text-gray-700">
                 <li className="flex flex-col md:flex-row md:items-start">
                   <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Free Cancellation</span>
                   <div className="md:w-2/3">
-                    Cancellations made <strong>72 hours (3 days) or more</strong> prior to the check-in date will receive a 100% refund.
+                    Reservations cancelled <strong>72 hours (3 days) or more</strong> prior to the scheduled check-in date are eligible for a full (100%) refund.
                   </div>
                 </li>
                 <li className="flex flex-col md:flex-row md:items-start">
-                  <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Partial Charge</span>
+                  <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Cancellation Charge</span>
                   <div className="md:w-2/3">
-                    Cancellations made <strong>between 72 hours and 24 hours</strong> prior to check-in will incur a charge equivalent to 1 night&apos;s stay.
+                    Reservations cancelled <strong>between 72 hours and 24 hours</strong> before check-in will incur a cancellation fee equivalent to one night&apos;s room charge.
                   </div>
                 </li>
                 <li className="flex flex-col md:flex-row md:items-start">
-                  <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Late Cancellation / No Show</span>
+                  <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Late Cancellation & No-Show</span>
                   <div className="md:w-2/3">
-                    Cancellations made <strong>less than 24 hours</strong> before check-in, or in the case of a no-show, will incur a 100% cancellation fee (no refund will be issued).
+                    Reservations cancelled <strong>less than 24 hours</strong> before the scheduled check-in time, or in the event of a no-show, will be charged 100% of the total booking amount. No refund will be applicable.
                   </div>
                 </li>
                 <li className="flex flex-col md:flex-row md:items-start">
                   <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Refund Processing</span>
                   <div className="md:w-2/3">
-                    Approved refunds will be processed to the original method of payment within 5-7 business days.
+                    Eligible refunds will be processed to the original payment method within 5–7 business days. The actual credit timeline may vary depending on your bank or payment provider.
+                  </div>
+                </li>
+                <li className="flex flex-col md:flex-row md:items-start">
+                  <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Reservation Modifications</span>
+                  <div className="md:w-2/3">
+                    Changes to reservation dates or room types are subject to availability and may result in a rate adjustment.
+                  </div>
+                </li>
+                <li className="flex flex-col md:flex-row md:items-start">
+                  <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Special Rates</span>
+                  <div className="md:w-2/3">
+                    Reservations made under non-refundable offers, promotional rates, group bookings, corporate contracts, or special packages may be subject to separate cancellation terms.
+                  </div>
+                </li>
+                <li className="flex flex-col md:flex-row md:items-start">
+                  <span className="font-bold text-gray-900 md:w-1/3 mb-1 md:mb-0">Hotel Rights</span>
+                  <div className="md:w-2/3">
+                    The management reserves the right of admission and the right to cancel bookings under exceptional circumstances.
                   </div>
                 </li>
               </ul>
