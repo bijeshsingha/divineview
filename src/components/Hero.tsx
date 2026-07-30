@@ -49,12 +49,14 @@ export default function Hero() {
           <div className="hidden md:block w-px h-16 bg-white/30" />
 
           <Link href="/ambarish" className="group flex flex-col items-center text-center cursor-pointer px-4">
-            <h2 className="text-xl md:text-2xl font-serif text-white tracking-[0.15em] uppercase mb-2 transition-colors duration-300 group-hover:text-secondary drop-shadow-md">
-              Hotel Ambarish
-            </h2>
-            <p className="text-xs md:text-sm text-gray-400 tracking-widest uppercase transition-colors duration-300 group-hover:text-white">
-              Paltan Bazaar
-            </p>
+            <div className="relative w-48 md:w-56 h-20 md:h-24 transition-transform duration-300 group-hover:scale-105">
+              <Image 
+                src="/images/ambarish-logo.png" 
+                alt="Hotel Ambarish Grand Residency" 
+                fill 
+                className="object-contain drop-shadow-md" 
+              />
+            </div>
             <div className="w-0 h-0.5 bg-secondary mt-4 transition-all duration-500 ease-in-out group-hover:w-full" />
           </Link>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AmbarishFooter() {
   return (
@@ -6,9 +7,14 @@ export default function AmbarishFooter() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
-            <span className="font-serif text-2xl font-bold text-white block mb-4">
-              Hotel Ambarish Grand Residency
-            </span>
+            <div className="relative w-56 md:w-64 h-20 mb-4">
+              <Image 
+                src="/images/ambarish-logo.png" 
+                alt="Hotel Ambarish Grand Residency" 
+                fill 
+                className="object-contain object-left" 
+              />
+            </div>
             <p className="text-sm">
               Your gateway to comfort. A 3-star property offering unpretentious rooms, excellent dining, and event spaces in the heart of Guwahati.
             </p>
