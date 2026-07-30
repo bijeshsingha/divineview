@@ -287,8 +287,9 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
             <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6">1. Select Dates</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Check In</label>
+                <label htmlFor="checkIn" className="block text-sm font-bold text-gray-700 mb-2">Check In</label>
                 <DatePicker 
+                  id="checkIn"
                   selected={checkIn} 
                   onChange={(date: Date | null) => {
                     setCheckIn(date);
@@ -305,8 +306,9 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Check Out</label>
+                <label htmlFor="checkOut" className="block text-sm font-bold text-gray-700 mb-2">Check Out</label>
                 <DatePicker 
+                  id="checkOut"
                   selected={checkOut} 
                   onChange={(date: Date | null) => setCheckOut(date)} 
                   selectsEnd 
@@ -324,7 +326,7 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
           <Card className="p-6 md:p-8">
             <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6 flex items-center">
               2. Choose Your Rooms
-              {nights > 0 && <span className="ml-4 text-sm font-normal text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{nights} Night(s)</span>}
+              {nights > 0 && <span className="ml-4 text-sm font-normal text-gray-700 bg-gray-100 px-3 py-1 rounded-full">{nights} Night(s)</span>}
             </h2>
             
             {(!checkIn || !checkOut || nights === 0) ? (
@@ -333,12 +335,19 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
               </div>
             ) : (
               <div className="space-y-6">
-                {activeRooms.map(room => {
+                {activeRooms.map((room, idx) => {
                   const inputs = roomInputs[room.id] || { rooms: 1, adults: 2, children: 0 };
                   return (
                     <div key={room.id} className="border border-gray-100 rounded-xl p-4 flex flex-col md:flex-row gap-6 shadow-sm hover:shadow-md transition-shadow bg-gray-50/50">
                       <div className="w-full md:w-1/3 h-48 relative rounded-lg overflow-hidden flex-shrink-0">
-                        <Image src={room.heroImage} alt={room.name} fill className="object-cover" />
+                        <Image 
+                          src={room.heroImage} 
+                          alt={room.name} 
+                          fill 
+                          className="object-cover" 
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          priority={idx < 2}
+                        />
                       </div>
                       <div className="flex-grow flex flex-col justify-between">
                         <div>
@@ -412,7 +421,7 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
                   {cart.map((item, idx) => (
                     <div key={idx} className="bg-stone-50 border border-stone-200 p-3 rounded-xl relative group">
-                      <button onClick={() => removeFromCart(idx)} className="absolute top-2 right-2 text-gray-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button aria-label="Remove item" onClick={() => removeFromCart(idx)} className="absolute top-2 right-2 text-gray-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                       </button>
                       <span className="font-bold text-gray-900 block text-sm pr-6">{item.name}</span>

@@ -39,7 +39,7 @@ export default function AmbarishPage() {
               {/* Deluxe Double Room */}
               <div className="bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col group">
                 <div className="relative h-64 w-full overflow-hidden">
-                  <Image src="/images/ambarish/room1.jpeg" alt="Deluxe Double Room" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src="/images/ambarish/room1.jpeg" alt="Deluxe Double Room" fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
                   <h3 className="text-2xl font-serif font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Deluxe Double Room</h3>
@@ -54,7 +54,7 @@ export default function AmbarishPage() {
               {/* Standard Double Room */}
               <div className="bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col group">
                 <div className="relative h-64 w-full overflow-hidden">
-                  <Image src="/images/ambarish/room2.jpeg" alt="Standard Double Room" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src="/images/ambarish/room2.jpeg" alt="Standard Double Room" fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
                   <h3 className="text-2xl font-serif font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Standard Double Room</h3>
@@ -69,7 +69,7 @@ export default function AmbarishPage() {
               {/* Suite */}
               <div className="bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col group">
                 <div className="relative h-64 w-full overflow-hidden">
-                  <Image src="/images/ambarish/room3.jpeg" alt="Suite" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src="/images/ambarish/room3.jpeg" alt="Suite" fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
                   <h3 className="text-2xl font-serif font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Suite</h3>
@@ -87,7 +87,7 @@ export default function AmbarishPage() {
         {/* RESTAURANT - SPLIT SCREEN */}
         <section id="dining" className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
           <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-1">
-            <Image src="/images/ambarish/restaurant1.jpeg" alt="Restaurant" fill className="object-cover" />
+            <Image src="/images/ambarish/restaurant1.jpeg" alt="Restaurant" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
           </div>
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-gray-900 text-white">
             <span className="text-amber-200 font-bold tracking-widest uppercase text-sm mb-4 block">Dining</span>
@@ -121,14 +121,14 @@ export default function AmbarishPage() {
             </ul>
           </div>
           <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-2">
-            <Image src="/images/ambarish/bar1.png" alt="Hotel Bar" fill className="object-cover" />
+            <Image src="/images/ambarish/bar1.png" alt="Hotel Bar" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
           </div>
         </section>
 
         {/* BANQUET - SPLIT SCREEN */}
         <section id="events" className="lg:min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
           <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-1">
-            <Image src="/images/ambarish/meeting room1.jpeg" alt="Banquet & Meeting Hall" fill className="object-cover" />
+            <Image src="/images/ambarish/meeting room1.jpeg" alt="Banquet & Meeting Hall" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
           </div>
           <div className="flex flex-col justify-center p-12 md:p-24 lg:p-32 order-2 lg:order-2 bg-gray-900 text-white">
             <span className="text-amber-200 font-bold tracking-widest uppercase text-sm mb-4 block">Events</span>
@@ -199,7 +199,7 @@ export default function AmbarishPage() {
             </ul>
           </div>
           <div className="relative h-[50vh] lg:h-screen w-full order-1 lg:order-2">
-            <Image src="/images/ambarish/spa1.png" alt="Spa and Wellness" fill className="object-cover" />
+            <Image src="/images/ambarish/spa1.png" alt="Spa and Wellness" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
           </div>
         </section>
 

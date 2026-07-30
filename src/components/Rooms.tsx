@@ -36,7 +36,7 @@ export default function Rooms() {
 
         {/* Rooms Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {ROOMS.map((room) => {
+          {ROOMS.map((room, idx) => {
             return (
               <Card
                 key={room.id}
@@ -49,6 +49,8 @@ export default function Rooms() {
                     alt={room.name}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    priority={idx < 4}
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
