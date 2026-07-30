@@ -465,13 +465,17 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
                 Secure 256-bit encrypted checkout
               </p>
+              <p className="text-[10px] text-center text-gray-400 mt-3 leading-relaxed">
+                By clicking &quot;Proceed to Pay&quot;, you agree to our <br/>
+                <Link href="/policies" target="_blank" className="underline hover:text-gray-700 font-medium">Cancellation Policy</Link>
+              </p>
             </div>
           </Card>
         </div>
       </div>
 
       {/* MOBILE PERSISTENT BOTTOM BAR */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 pt-3 pb-4 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div>
             <p className="text-xs text-gray-500 uppercase font-bold">Total ({nights} Nights)</p>
@@ -485,6 +489,11 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
             {isProcessing ? "Wait..." : cart.length === 0 ? "Add Rooms" : "Pay Now"}
           </button>
         </div>
+        {cart.length > 0 && (
+          <p className="text-[10px] text-center text-gray-400 mt-2">
+            By proceeding, you agree to our <Link href="/policies" target="_blank" className="underline">Cancellation Policy</Link>
+          </p>
+        )}
       </div>
 
     </div>
