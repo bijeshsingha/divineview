@@ -1,5 +1,6 @@
 import AmbarishNavbar from "@/components/AmbarishNavbar";
 import AmbarishFooter from "@/components/AmbarishFooter";
+import MenuModal from "@/components/MenuModal";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -101,6 +102,8 @@ export default function AmbarishPage() {
               <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Multi-Cuisine Menu</li>
               <li className="flex items-center"><span className="text-secondary mr-4 text-xl">✦</span> Exquisite Table Service</li>
             </ul>
+            
+            <MenuModal menuUrl="/menu-ambarish.pdf" hotelName="Hotel Ambarish Grand Residency" />
           </div>
         </section>
 
