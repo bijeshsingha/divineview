@@ -35,9 +35,11 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24 w-full max-w-6xl">
           
           <Link href="/divine-view" className="group flex flex-col items-center text-center cursor-pointer px-4">
-            <h2 className="text-xl md:text-2xl font-serif text-white tracking-[0.15em] uppercase mb-2 transition-colors duration-300 group-hover:text-secondary drop-shadow-md">
-              Hotel Divine View
-            </h2>
+            <div className="h-16 md:h-20 flex items-center justify-center mb-2">
+              <h2 className="text-xl md:text-2xl font-serif text-white tracking-[0.15em] uppercase transition-colors duration-300 group-hover:text-secondary drop-shadow-md">
+                Hotel Divine View
+              </h2>
+            </div>
             <p className="text-xs md:text-sm text-gray-400 tracking-widest uppercase transition-colors duration-300 group-hover:text-white">
               Paltan Bazaar
             </p>
@@ -49,14 +51,19 @@ export default function Hero() {
           <div className="hidden md:block w-px h-16 bg-white/30" />
 
           <Link href="/ambarish" className="group flex flex-col items-center text-center cursor-pointer px-4">
-            <div className="relative w-48 md:w-56 h-20 md:h-24 transition-transform duration-300 group-hover:scale-105">
-              <Image 
-                src="/images/ambarish-logo.png" 
-                alt="Hotel Ambarish Grand Residency" 
-                fill 
-                className="object-contain drop-shadow-md" 
-              />
+            <div className="h-16 md:h-20 flex items-center justify-center mb-2 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-56 md:w-64 h-16 md:h-20 -mt-2">
+                <Image 
+                  src="/images/ambarish-logo.png" 
+                  alt="Hotel Ambarish Grand Residency" 
+                  fill 
+                  className="object-contain drop-shadow-md" 
+                />
+              </div>
             </div>
+            <p className="text-xs md:text-sm text-gray-400 tracking-widest uppercase transition-colors duration-300 group-hover:text-white">
+              Paltan Bazaar
+            </p>
             <div className="w-0 h-0.5 bg-secondary mt-4 transition-all duration-500 ease-in-out group-hover:w-full" />
           </Link>
 
