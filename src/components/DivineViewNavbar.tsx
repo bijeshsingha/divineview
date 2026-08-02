@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function DivineViewNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,13 +29,14 @@ export default function DivineViewNavbar() {
               </Link>
               
               <Link href="/divine-view" className="flex-shrink-0 flex items-center" onClick={() => setIsOpen(false)}>
-                <div className="flex flex-col">
-                  <span className="font-serif text-2xl font-bold text-primary leading-none tracking-tight">
-                    Hotel Divine View
-                  </span>
-                  <span className="text-[0.65rem] text-primary tracking-[0.25em] uppercase mt-0.5 font-medium">
-                    Guwahati
-                  </span>
+                <div className="relative h-12 w-48 sm:w-60">
+                  <Image 
+                    src="/images/hdv-logo-dark.png" 
+                    alt="Hotel Divine View" 
+                    fill 
+                    className="object-contain object-left" 
+                    priority 
+                  />
                 </div>
               </Link>
             </div>

@@ -35,10 +35,15 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24 w-full max-w-6xl">
           
           <Link href="/divine-view" className="group flex flex-col items-center text-center cursor-pointer px-4">
-            <div className="h-16 md:h-20 flex items-center justify-center mb-2">
-              <h2 className="text-xl md:text-2xl font-serif text-white tracking-[0.15em] uppercase transition-colors duration-300 group-hover:text-secondary drop-shadow-md">
-                Hotel Divine View
-              </h2>
+            <div className="h-16 md:h-20 flex items-center justify-center mb-2 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-56 md:w-64 h-16 md:h-20 -mt-2">
+                <Image 
+                  src="/images/hdv-logo-light.png" 
+                  alt="Hotel Divine View" 
+                  fill 
+                  className="object-contain drop-shadow-md" 
+                />
+              </div>
             </div>
             <p className="text-xs md:text-sm text-gray-400 tracking-widest uppercase transition-colors duration-300 group-hover:text-white">
               Paltan Bazaar

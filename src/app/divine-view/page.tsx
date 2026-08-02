@@ -30,9 +30,16 @@ export default function DivineView() {
             <p className="text-sm md:text-base text-secondary font-medium tracking-[0.3em] uppercase mb-4 drop-shadow-md">
               Welcome to
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6 drop-shadow-lg leading-tight">
-              Hotel Divine View
-            </h1>
+            <h1 className="sr-only">Hotel Divine View</h1>
+            <div className="relative w-[90vw] max-w-4xl h-32 md:h-48 lg:h-64 mb-6 drop-shadow-2xl mx-auto">
+              <Image 
+                src="/images/hdv-logo-light.png" 
+                alt="Hotel Divine View" 
+                fill 
+                className="object-contain" 
+                priority 
+              />
+            </div>
             <div className="w-24 h-1 bg-secondary mx-auto mb-8 rounded-full shadow-lg"></div>
             <p className="text-lg sm:text-xl text-gray-200 mb-10 max-w-2xl mx-auto drop-shadow-md">
               Your sanctuary of comfort and elegance in the heart of Paltan Bazaar, Guwahati.

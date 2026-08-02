@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,9 +7,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
-            <span className="font-serif text-2xl font-bold text-white block mb-4">
-              Hotel Divine View
-            </span>
+            <div className="relative w-56 md:w-64 h-20 mb-4">
+              <Image 
+                src="/images/hdv-logo-light.png" 
+                alt="Hotel Divine View" 
+                fill 
+                className="object-contain object-left" 
+              />
+            </div>
             <p className="text-sm">
               Your gateway to the Northeast. Clean, affordable, and centrally located in Paltan Bazar, Guwahati.
             </p>
