@@ -33,7 +33,7 @@ export default function DivineView() {
             <h1 className="sr-only">Hotel Divine View</h1>
             <div className="relative w-[90vw] max-w-4xl h-32 md:h-48 lg:h-64 mb-6 drop-shadow-2xl mx-auto">
               <Image 
-                src="/images/hdv-logo-light.png" 
+                src="/images/hdv-logo-dark.png" 
                 alt="Hotel Divine View" 
                 fill 
                 className="object-contain" 
