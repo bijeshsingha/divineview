@@ -31,7 +31,7 @@ export default function DivineViewNavbar() {
               <Link href="/divine-view" className="flex-shrink-0 flex items-center" onClick={() => setIsOpen(false)}>
                 <div className="relative h-12 w-48 sm:w-60">
                   <Image 
-                    src="/images/hdv-logo-light.png" 
+                    src="/images/hdv-logo-light-v2.png" 
                     alt="Hotel Divine View" 
                     fill 
                     className="object-contain object-left" 

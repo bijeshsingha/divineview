@@ -38,7 +38,7 @@ export default function Hero() {
             <div className="h-24 md:h-32 flex items-center justify-center mb-2 transition-transform duration-300 group-hover:scale-105">
               <div className="relative w-72 md:w-80 h-24 md:h-32 -mt-2">
                 <Image 
-                  src="/images/hdv-logo-dark.png" 
+                  src="/images/hdv-logo-dark-v2.png" 
                   alt="Hotel Divine View" 
                   fill 
                   className="object-contain drop-shadow-md" 
