@@ -42,12 +42,12 @@ export default function Founders() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {founders.map((founder, index) => (
             <div key={index} className="flex flex-col bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="relative h-48 w-full bg-gray-200">
+              <div className="relative h-72 sm:h-80 w-full bg-gray-100">
                 <Image
                   src={founder.image}
                   alt={founder.name}
                   fill
-                  className="object-cover object-top"
+                  className="object-contain"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">
