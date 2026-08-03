@@ -5,7 +5,7 @@ export default function Founders() {
     {
       name: "Bidyut Singha",
       role: "Partner",
-      image: "/images/bidyut-singha.jpeg",
+      image: "/images/bidyut-singha-v2.jpeg",
       bio: "Starting as a hotel receptionist in Guwahati, Bidyut's relentless work ethic and dedication to guest relations propelled him to General Manager. Today, he leverages his deep operational expertise to co-found Divine View Group and deliver exceptional hospitality.",
       socials: [
         { name: "Facebook", url: "#", icon: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" },
@@ -42,12 +42,12 @@ export default function Founders() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {founders.map((founder, index) => (
             <div key={index} className="flex flex-col bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="relative h-72 sm:h-80 w-full bg-gray-100">
+              <div className="relative h-64 sm:h-72 w-full bg-gray-200">
                 <Image
                   src={founder.image}
                   alt={founder.name}
                   fill
-                  className="object-contain"
+                  className="object-cover object-top"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">
