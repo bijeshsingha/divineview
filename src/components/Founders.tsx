@@ -4,8 +4,8 @@ export default function Founders() {
   const founders = [
     {
       name: "Bidyut Singha",
-      role: "Co-Founder",
-      image: "/images/hero.jpg", // Default placeholder image
+      role: "Partner",
+      image: "/images/bidyut-singha.jpeg",
       bio: "Starting as a hotel receptionist in Guwahati, Bidyut's relentless work ethic and dedication to guest relations propelled him to General Manager. Today, he leverages his deep operational expertise to co-found Divine View Group and deliver exceptional hospitality.",
       socials: [
         { name: "Facebook", url: "#", icon: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" },
@@ -15,7 +15,7 @@ export default function Founders() {
     },
     {
       name: "Bablu Singha",
-      role: "Co-Founder",
+      role: "Partner",
       image: "/images/hero.jpg", // Default placeholder image
       bio: "With a strong entrepreneurial drive, Bablu founded a beloved Manipuri restaurant in Paltan Bazaar. This venture fostered a profound understanding of authentic culinary experiences, paving the way for his partnership with Bidyut to build Divine View Group.",
       socials: [
