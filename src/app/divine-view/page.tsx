@@ -4,52 +4,32 @@ import Facilities from "@/components/Facilities";
 import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import HeroBookingWidget from "@/components/HeroBookingWidget";
 
 export default function DivineView() {
   return (
     <>
       <DivineViewNavbar />
       <main className="flex-grow">
-        {/* Elegant Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center">
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/hero.jpg"
-              alt="Hotel Divine View"
-              fill
-              className="object-cover"
-              priority
-            />
-            {/* Elegant gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
-          </div>
+        {/* Cinematic Parallax Hero Section */}
+        <section 
+          className="relative h-screen flex items-center justify-center bg-fixed bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        >
+          {/* Elegant dark forest green to black gradient overlay */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0a2414]/70 via-[#06180c]/80 to-background" />
 
           {/* Content */}
-          <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-20">
+          <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-20 w-full">
             <p className="text-sm md:text-base text-secondary font-medium tracking-[0.3em] uppercase mb-4 drop-shadow-md">
               Welcome to
             </p>
-            <h1 className="sr-only">Hotel Divine View</h1>
-            <div className="relative w-[90vw] max-w-4xl h-32 md:h-48 lg:h-64 mb-6 drop-shadow-2xl mx-auto">
-              <Image 
-                src="/images/hdv-logo-dark-v2.png" 
-                alt="Hotel Divine View" 
-                fill 
-                className="object-contain" 
-                priority 
-              />
-            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 drop-shadow-2xl mx-auto tracking-wide">
+              Hotel Divine View
+            </h1>
             <div className="w-24 h-1 bg-secondary mx-auto mb-8 rounded-full shadow-lg"></div>
-            <p className="text-lg sm:text-xl text-gray-200 mb-10 max-w-2xl mx-auto drop-shadow-md">
-              Your sanctuary of comfort and elegance in the heart of Paltan Bazaar, Guwahati.
-            </p>
-            <a
-              href="#rooms"
-              className="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              Explore Our Rooms
-            </a>
+            
+            <HeroBookingWidget />
           </div>
         </section>
         <Rooms />

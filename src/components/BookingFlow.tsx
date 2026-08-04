@@ -26,11 +26,11 @@ type CartItem = {
 
 const Counter = ({ label, value, onChange, min = 0 }: any) => (
   <div className="flex flex-col items-center">
-    <span className="text-[10px] uppercase font-bold text-gray-500 mb-1">{label}</span>
-    <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white">
-      <button type="button" onClick={() => onChange(value - 1)} disabled={value <= min} className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent font-medium transition-colors">−</button>
-      <span className="w-6 text-center text-sm font-bold text-gray-900">{value}</span>
-      <button type="button" onClick={() => onChange(value + 1)} className="px-3 py-1 text-gray-600 hover:bg-gray-100 font-medium transition-colors">+</button>
+    <span className="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1.5">{label}</span>
+    <div className="flex items-center border border-gray-200 rounded-full overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
+      <button type="button" onClick={() => onChange(value - 1)} disabled={value <= min} className="px-3.5 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-900 disabled:opacity-30 disabled:hover:bg-transparent font-medium transition-colors">−</button>
+      <span className="w-8 text-center text-sm font-bold text-gray-900">{value}</span>
+      <button type="button" onClick={() => onChange(value + 1)} className="px-3.5 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-900 font-medium transition-colors">+</button>
     </div>
   </div>
 );
@@ -43,12 +43,22 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
   
   const activeRooms = hotel === "ambarish" ? AMBARISH_ROOMS : ROOMS;
   const initialRoomId = searchParams.get("room");
+  const urlCheckIn = searchParams.get("checkIn");
+  const urlCheckOut = searchParams.get("checkOut");
+  const urlRooms = searchParams.get("rooms");
+  const urlAdults = searchParams.get("adults");
 
-  const [checkIn, setCheckIn] = useState<Date | null>(new Date());
+  const [checkIn, setCheckIn] = useState<Date | null>(() => {
+    if (urlCheckIn) return new Date(urlCheckIn);
+    return new Date();
+  });
   
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const [checkOut, setCheckOut] = useState<Date | null>(tomorrow);
+  const [checkOut, setCheckOut] = useState<Date | null>(() => {
+    if (urlCheckOut) return new Date(urlCheckOut);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
+  });
   
   const [guestName, setGuestName] = useState("");
   const [guestEmail, setGuestEmail] = useState("");
@@ -60,23 +70,28 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
   // States for room addition inputs
   const [roomInputs, setRoomInputs] = useState<Record<string, { rooms: number; adults: number; children: number }>>({});
 
-  // Hydrate state from sessionStorage
+  // Hydrate state from sessionStorage (but prefer URL params if they exist)
   useEffect(() => {
     setIsMounted(true);
     
+    // Only load cart from session if we didn't just come from a fresh search
     const savedCart = sessionStorage.getItem(`cart_${hotel}`);
-    if (savedCart) {
+    if (savedCart && !urlCheckIn) {
       try { setCart(JSON.parse(savedCart)); } catch (e) {}
     }
-    const savedDates = sessionStorage.getItem(`dates_${hotel}`);
-    if (savedDates) {
-      try {
-        const { in: cIn, out: cOut } = JSON.parse(savedDates);
-        if (cIn) setCheckIn(new Date(cIn));
-        if (cOut) setCheckOut(new Date(cOut));
-      } catch (e) {}
+    
+    // Prefer URL params for dates, fallback to session storage, then defaults
+    if (!urlCheckIn || !urlCheckOut) {
+      const savedDates = sessionStorage.getItem(`dates_${hotel}`);
+      if (savedDates) {
+        try {
+          const { in: cIn, out: cOut } = JSON.parse(savedDates);
+          if (cIn && !urlCheckIn) setCheckIn(new Date(cIn));
+          if (cOut && !urlCheckOut) setCheckOut(new Date(cOut));
+        } catch (e) {}
+      }
     }
-  }, [hotel]);
+  }, [hotel, urlCheckIn, urlCheckOut]);
 
   // Persist cart to sessionStorage
   useEffect(() => {
@@ -123,7 +138,7 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
   };
 
   const addToCart = (room: any) => {
-    const inputs = roomInputs[room.id] || { rooms: 1, adults: 2, children: 0 };
+    const inputs = roomInputs[room.id] || { rooms: urlRooms ? parseInt(urlRooms) : 1, adults: urlAdults ? parseInt(urlAdults) : 2, children: 0 };
     const newItem: CartItem = {
       roomId: room.id,
       name: room.name,
@@ -283,8 +298,8 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
         <div className="w-full lg:w-[70%] space-y-8">
           
           {/* STEP 1: DATES */}
-          <Card className="p-6 md:p-8">
-            <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6">1. Select Dates</h2>
+          <div className="bg-white rounded-3xl p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100">
+            <h2 className="text-2xl font-serif font-bold text-gray-900 mb-8 border-b border-gray-100 pb-4">1. Select Dates</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="checkIn" className="block text-sm font-bold text-gray-700 mb-2">Check In</label>
@@ -320,13 +335,13 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 />
               </div>
             </div>
-          </Card>
+          </div>
 
           {/* STEP 2: AVAILABLE ROOMS */}
-          <Card className="p-6 md:p-8">
-            <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6 flex items-center">
+          <div className="bg-white rounded-3xl p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100">
+            <h2 className="text-2xl font-serif font-bold text-gray-900 mb-8 border-b border-gray-100 pb-4 flex items-center">
               2. Choose Your Rooms
-              {nights > 0 && <span className="ml-4 text-sm font-normal text-gray-700 bg-gray-100 px-3 py-1 rounded-full">{nights} Night(s)</span>}
+              {nights > 0 && <span className="ml-4 text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-full uppercase tracking-wider">{nights} Night(s)</span>}
             </h2>
             
             {(!checkIn || !checkOut || nights === 0) ? (
@@ -336,15 +351,15 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
             ) : (
               <div className="space-y-6">
                 {activeRooms.map((room, idx) => {
-                  const inputs = roomInputs[room.id] || { rooms: 1, adults: 2, children: 0 };
+                  const inputs = roomInputs[room.id] || { rooms: urlRooms ? parseInt(urlRooms) : 1, adults: urlAdults ? parseInt(urlAdults) : 2, children: 0 };
                   return (
-                    <div key={room.id} className="border border-gray-100 rounded-xl p-4 flex flex-col md:flex-row gap-6 shadow-sm hover:shadow-md transition-shadow bg-gray-50/50">
-                      <div className="w-full md:w-1/3 h-48 relative rounded-lg overflow-hidden flex-shrink-0">
+                    <div key={room.id} className="group border border-gray-100/80 rounded-2xl p-5 flex flex-col md:flex-row gap-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
+                      <div className="w-full md:w-1/3 h-56 relative rounded-xl overflow-hidden flex-shrink-0">
                         <Image 
                           src={room.heroImage} 
                           alt={room.name} 
                           fill 
-                          className="object-cover" 
+                          className="object-cover transition-transform duration-700 group-hover:scale-105" 
                           sizes="(max-width: 768px) 100vw, 33vw"
                           priority={idx < 2}
                         />
@@ -367,8 +382,8 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                         </div>
 
                         {/* Add to Cart Config */}
-                        <div className="flex flex-wrap items-end justify-between gap-4 mt-auto pt-4 border-t border-gray-200">
-                          <div className="flex gap-2 sm:gap-4">
+                        <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-end justify-between gap-4 mt-auto pt-4 border-t border-gray-200">
+                          <div className="flex flex-wrap gap-2 sm:gap-4 w-full sm:w-auto justify-between sm:justify-start">
                             <Counter label="Rooms" min={1} value={inputs.rooms} onChange={(val: number) => handleRoomInput(room.id, "rooms", val)} />
                             <Counter label="Adults" min={1} value={inputs.adults} onChange={(val: number) => handleRoomInput(room.id, "adults", val)} />
                             <Counter label="Child" min={0} value={inputs.children} onChange={(val: number) => handleRoomInput(room.id, "children", val)} />
@@ -376,8 +391,7 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                           
                           <Button 
                             onClick={() => addToCart(room)}
-                            className={`${hotel === "ambarish" ? "bg-gray-900 hover:bg-black" : "bg-primary hover:bg-primary-dark"} text-white whitespace-nowrap mb-0.5`}
-                            size="sm"
+                            className={`${hotel === "ambarish" ? "bg-gray-900 hover:bg-black" : "bg-primary hover:bg-primary-dark"} text-white whitespace-nowrap rounded-full px-8 py-2.5 w-full sm:w-auto shadow-md hover:shadow-lg transition-all duration-300`}
                           >
                             Add to Cart
                           </Button>
@@ -388,12 +402,12 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 })}
               </div>
             )}
-          </Card>
+          </div>
 
           {/* STEP 3: GUEST DETAILS */}
           {cart.length > 0 && (
-            <Card className="p-6 md:p-8">
-              <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6">3. Guest Information</h2>
+            <div className="bg-white rounded-3xl p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 mb-8 border-b border-gray-100 pb-4">3. Guest Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Input required label="Full Name *" type="text" value={guestName} onChange={e => setGuestName(e.target.value)} placeholder="John Doe" />
                 <Input required label="Phone Number *" type="tel" value={guestPhone} onChange={e => setGuestPhone(e.target.value)} placeholder="+91 98765 43210" />
@@ -401,16 +415,19 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                   <Input label="Email Address" type="email" value={guestEmail} onChange={e => setGuestEmail(e.target.value)} placeholder="john@example.com (For your receipt)" />
                 </div>
               </div>
-            </Card>
+            </div>
           )}
 
-          <div className="h-24 lg:hidden"></div>
+          {/* Removed the lg:hidden h-24 spacer from here so it can go after the cart */}
         </div>
 
-        {/* RIGHT COLUMN: 30% (Sticky Cart Widget) */}
-        <div className="hidden lg:block w-[30%] relative">
-          <Card className="sticky top-24 p-6 flex flex-col gap-6 shadow-xl border-gray-200">
-            <h3 className="text-xl font-bold text-gray-900 border-b border-gray-100 pb-4">Your Cart</h3>
+        {/* RIGHT COLUMN: 30% (Sticky Cart Widget) - Now visible on mobile */}
+        <div className="w-full lg:w-[30%] relative mb-8 lg:mb-0">
+          <div className="lg:sticky lg:top-24 bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100/50 flex flex-col gap-6">
+            <h3 className="text-xl font-bold text-gray-900 border-b border-gray-100 pb-4 flex justify-between items-center">
+              <span>Your Stay</span>
+              <span className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{cart.length} item{cart.length !== 1 ? 's' : ''}</span>
+            </h3>
             
             <div className="space-y-4">
               {cart.length === 0 ? (
@@ -424,9 +441,9 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                       <button aria-label="Remove item" onClick={() => removeFromCart(idx)} className="absolute top-2 right-2 text-gray-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                       </button>
-                      <span className="font-bold text-gray-900 block text-sm pr-6">{item.name}</span>
-                      <span className="text-gray-500 text-xs block mb-1">{item.numRooms} Room(s) · {item.adults} Ad · {item.children} Ch</span>
-                      <span className={`font-bold ${textHotelColor} text-sm`}>₹{item.price * item.numRooms}/night</span>
+                      <span className="font-bold text-gray-900 block text-sm pr-6 mb-1">{item.name}</span>
+                      <span className="text-gray-500 text-xs block mb-2">{item.numRooms} Room(s) · {item.adults} Ad · {item.children} Ch</span>
+                      <span className={`font-bold ${textHotelColor} text-sm bg-white px-2 py-1 rounded shadow-sm inline-block`}>₹{item.price * item.numRooms}/night</span>
                     </div>
                   ))}
                 </div>
@@ -434,18 +451,18 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
 
               {/* Price Breakdown */}
               {cart.length > 0 && nights > 0 && (
-                <div className="bg-stone-50 rounded-xl p-4 space-y-2 border border-stone-200 shadow-inner mt-4">
+                <div className="bg-gray-50/80 rounded-2xl p-5 space-y-3 border border-gray-100 mt-4">
                   <div className="flex justify-between text-sm text-gray-600">
                     <span>Rooms ({cart.length}) × {nights} Nights</span>
-                    <span>₹{totalPrice}</span>
+                    <span className="font-medium text-gray-900">₹{totalPrice}</span>
                   </div>
-                  <div className="flex justify-between text-sm text-gray-600 border-b border-gray-200 pb-2">
+                  <div className="flex justify-between text-sm text-gray-600 border-b border-gray-200 pb-3">
                     <span>Taxes & Fees</span>
-                    <span>Included</span>
+                    <span className="text-green-600 font-medium">Included</span>
                   </div>
                   <div className="flex justify-between items-end pt-2">
                     <span className="font-bold text-gray-900">Total</span>
-                    <span className={`text-2xl font-bold ${textHotelColor}`}>₹{totalPrice}</span>
+                    <span className={`text-3xl font-bold ${textHotelColor} tracking-tight`}>₹{totalPrice}</span>
                   </div>
                 </div>
               )}
@@ -454,9 +471,8 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
               <Button 
                 onClick={handlePayment} 
                 disabled={isProcessing || cart.length === 0 || nights === 0} 
-                className={`mt-2 ${hotel === "ambarish" ? "bg-gray-900 hover:bg-black" : ""}`}
+                className={`mt-2 ${hotel === "ambarish" ? "bg-gray-900 hover:bg-black" : "bg-[#0a3824] hover:bg-[#07291a]"} text-white rounded-full py-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-bold text-lg`}
                 fullWidth
-                size="lg"
               >
                 {isProcessing ? "Processing..." : "Proceed to Pay"}
               </Button>
@@ -470,9 +486,11 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 <Link href="/policies" target="_blank" className="underline hover:text-gray-700 font-medium">Cancellation Policy</Link>
               </p>
             </div>
-          </Card>
+          </div>
         </div>
       </div>
+
+      <div className="h-24 lg:hidden"></div>
 
       {/* MOBILE PERSISTENT BOTTOM BAR */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 pt-3 pb-4 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50">

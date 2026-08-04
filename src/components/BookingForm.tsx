@@ -10,14 +10,16 @@ const RAZORPAY_LINK = "#";
 export default function BookingForm() {
   const searchParams = useSearchParams();
   const initialRoom = searchParams.get("room") || ROOMS[0].id;
+  const initialCheckIn = searchParams.get("checkIn") || "";
+  const initialCheckOut = searchParams.get("checkOut") || "";
 
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     roomId: initialRoom,
-    checkIn: "",
-    checkOut: "",
+    checkIn: initialCheckIn,
+    checkOut: initialCheckOut,
     numRooms: 1,
     adults: 1,
     children: 0,
@@ -74,10 +76,14 @@ export default function BookingForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          roomId: formData.roomId,
+          cart: [{
+            roomId: formData.roomId,
+            numRooms: Number(formData.numRooms),
+            adults: Number(formData.adults),
+            children: Number(formData.children)
+          }],
           checkIn: formData.checkIn,
           checkOut: formData.checkOut,
-          numRooms: Number(formData.numRooms),
           couponCode: couponCode
         })
       });
@@ -127,6 +133,15 @@ export default function BookingForm() {
     if (RAZORPAY_LINK !== "#") window.open(RAZORPAY_LINK, "_blank");
     window.location.href = waLink;
   };
+
+  const ROOM_POLICIES: Record<string, { maxAdults: number }> = {
+    "double-standard": { maxAdults: 2 },
+    "double-deluxe": { maxAdults: 3 },
+    "double-executive": { maxAdults: 3 },
+    "family-executive": { maxAdults: 4 },
+  };
+  
+  const currentMaxAdults = (ROOM_POLICIES[formData.roomId]?.maxAdults || 2) * Number(formData.numRooms);
 
   return (
     <div className="space-y-6">
@@ -184,14 +199,18 @@ export default function BookingForm() {
               <input required type="number" min="1" name="numRooms" value={formData.numRooms} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Adults</label>
-              <input required type="number" min="1" name="adults" value={formData.adults} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Adults (Max {currentMaxAdults})</label>
+              <input required type="number" min="1" max={currentMaxAdults} name="adults" value={formData.adults} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Children</label>
-              <input type="number" min="0" name="children" value={formData.children} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary" />
+              <input type="number" min="0" max={Number(formData.numRooms) * 2} name="children" value={formData.children} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary" />
             </div>
           </div>
+          
+          {Number(formData.adults) > currentMaxAdults && (
+            <p className="text-red-600 text-xs font-semibold">Maximum {currentMaxAdults} adults allowed for {formData.numRooms} room(s).</p>
+          )}
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Coupon Code</label>
@@ -259,7 +278,8 @@ export default function BookingForm() {
         {bookingState.status === "success" && bookingState.available ? (
           <button 
             onClick={handleSubmit}
-            className="w-full bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 flex justify-center items-center"
+            disabled={Number(formData.adults) > currentMaxAdults}
+            className="w-full bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 flex justify-center items-center disabled:opacity-50 disabled:transform-none"
           >
             Confirm & Pay via Razorpay
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -268,7 +288,7 @@ export default function BookingForm() {
           <button 
             type="button"
             onClick={checkAvailability}
-            disabled={bookingState.status === "loading" || !formData.checkIn || !formData.checkOut}
+            disabled={bookingState.status === "loading" || !formData.checkIn || !formData.checkOut || Number(formData.adults) > currentMaxAdults}
             className="w-full bg-gray-900 hover:bg-black disabled:bg-gray-400 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-md transition-colors flex justify-center items-center"
           >
             {bookingState.status === "loading" ? (

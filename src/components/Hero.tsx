@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,15 +7,23 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center">
-      {/* Background Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/guwahati-bg.png"
-          alt="Divine View Hotels"
-          fill
-          className="object-cover"
-          priority
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="object-cover w-full h-full"
+          onTimeUpdate={(e) => {
+            if (e.currentTarget.currentTime >= 6) {
+              e.currentTarget.currentTime = 0;
+              e.currentTarget.play().catch(() => {});
+            }
+          }}
+        >
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+        </video>
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/60" />
       </div>

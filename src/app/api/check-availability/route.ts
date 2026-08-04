@@ -39,7 +39,21 @@ export async function POST(request: Request) {
       if (!room) {
         return NextResponse.json({ error: `Invalid room selected: ${item.roomId}` }, { status: 404 });
       }
-      basePrice += parseInt(room.price) * item.numRooms * nights;
+      
+      const roomBasePrice = parseInt(room.price);
+      let roomTotal = roomBasePrice * item.numRooms * nights;
+      
+      // Extra Guest Policy: 
+      // Base occupancy is typically 2 adults (4 for Family Executive)
+      const baseOccupancy = item.roomId === "family-executive" ? 4 : 2;
+      const totalAllowedBase = baseOccupancy * item.numRooms;
+      const extraAdults = Math.max(0, (item.adults || 1) - totalAllowedBase);
+      
+      // Charge ₹500 per extra adult per night
+      const extraGuestCharge = extraAdults * 500 * nights;
+      roomTotal += extraGuestCharge;
+      
+      basePrice += roomTotal;
     }
 
     let discountAmount = 0;
