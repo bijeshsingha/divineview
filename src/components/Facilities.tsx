@@ -1,18 +1,34 @@
+import {
+  Wind,
+  Tv,
+  Wifi,
+  Phone,
+  Stethoscope,
+  Newspaper,
+  CarFront,
+  Map,
+  Sparkles,
+  Utensils,
+  Zap,
+  Shirt,
+  Droplet
+} from "lucide-react";
+
 export default function Facilities() {
   const amenities = [
-    "Air Condition Rooms",
-    "Television with Satellite Channels",
-    "Free Internet / Broadband / Wifi",
-    "Telephone",
-    "Doctor on Call",
-    "Newspaper",
-    "Free Car Parking",
-    "Car Rental / Travel Assistance",
-    "24 Hr Housekeeping",
-    "Multi Cuisine Room Service",
-    "Generator (24 Hr Power Backup)",
-    "Laundry Service",
-    "24 Hr. Hot/Cold Water in bathroom",
+    { name: "Air Condition Rooms", icon: Wind },
+    { name: "Television with Satellite Channels", icon: Tv },
+    { name: "Free Internet / Broadband / Wifi", icon: Wifi },
+    { name: "Telephone", icon: Phone },
+    { name: "Doctor on Call", icon: Stethoscope },
+    { name: "Newspaper", icon: Newspaper },
+    { name: "Free Car Parking", icon: CarFront },
+    { name: "Car Rental / Travel Assistance", icon: Map },
+    { name: "24 Hr Housekeeping", icon: Sparkles },
+    { name: "Multi Cuisine Room Service", icon: Utensils },
+    { name: "Generator (24 Hr Power Backup)", icon: Zap },
+    { name: "Laundry Service", icon: Shirt },
+    { name: "24 Hr. Hot/Cold Water in bathroom", icon: Droplet },
   ];
 
   return (
@@ -28,29 +44,20 @@ export default function Facilities() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {amenities.map((amenity, index) => (
+          {amenities.map((amenity, index) => {
+            const Icon = amenity.icon;
+            return (
             <div
               key={index}
-              className="flex items-center space-x-4 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-primary/30 transition-colors"
+              className="flex items-center space-x-4 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-primary/30 hover:shadow-sm transition-all duration-300"
             >
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+                <Icon className="w-5 h-5" />
               </div>
-              <span className="text-gray-800 font-medium">{amenity}</span>
+              <span className="text-gray-800 font-medium">{amenity.name}</span>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       
