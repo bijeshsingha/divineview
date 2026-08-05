@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <div className="relative w-56 md:w-64 h-20 mb-4">
               <Image 
-                src="/images/hdv-logo-dark-v2.png" 
+                src="/images/hdv-new-logo-horizontal.png" 
                 alt="Hotel Divine View" 
                 fill 
                 className="object-contain object-left" 
