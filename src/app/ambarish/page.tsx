@@ -1,4 +1,4 @@
-import AmbarishNavbar from "@/components/AmbarishNavbar";
+import PortalNavbar from "@/components/PortalNavbar";
 import AmbarishFooter from "@/components/AmbarishFooter";
 import MenuModal from "@/components/MenuModal";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function AmbarishPage() {
   return (
     <>
-      <AmbarishNavbar />
+      <PortalNavbar />
       <main className="flex-grow bg-white">
         
         {/* HERO SECTION - FULL PAGE */}

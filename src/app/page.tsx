@@ -1,6 +1,7 @@
 import PortalNavbar from "@/components/PortalNavbar";
 import Hero from "@/components/Hero";
-import Explore from "@/components/Explore";
+import ExploreGuwahati from "@/components/ExploreGuwahati";
+import ExploreParallax from "@/components/ExploreParallax";
 import Founders from "@/components/Founders";
 import PortalFooter from "@/components/PortalFooter";
 
@@ -29,17 +30,16 @@ export default function Home() {
               our dedicated team ensures your stay is nothing short of divine.
             </p>
           </div>
-
-          {/* Bouncing Down Arrow */}
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-            <a href="#explore" aria-label="Scroll down" className="text-secondary opacity-80 hover:opacity-100 transition-opacity">
-              <svg className="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </a>
-          </div>
         </section>
-        <Explore />
+        
+        {/* Explore Guwahati Details */}
+        <ExploreGuwahati />
+
+        {/* Explore Section with Parallax */}
+        <ExploreParallax />
+
+
+        
         <Founders />
       </main>
       <PortalFooter />

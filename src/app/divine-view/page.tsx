@@ -1,4 +1,4 @@
-import DivineViewNavbar from "@/components/DivineViewNavbar";
+import PortalNavbar from "@/components/PortalNavbar";
 import Rooms from "@/components/Rooms";
 import Facilities from "@/components/Facilities";
 import Reviews from "@/components/Reviews";
@@ -10,7 +10,7 @@ import InfoSlideshow from "@/components/InfoSlideshow";
 export default function DivineView() {
   return (
     <>
-      <DivineViewNavbar />
+      <PortalNavbar />
       <main className="flex-grow">
         {/* Cinematic Parallax Hero Section */}
         <section 

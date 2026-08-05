@@ -27,8 +27,15 @@ export default function Founders() {
   ];
 
   return (
-    <section id="founders" className="scroll-mt-20 py-16 bg-white min-h-[calc(100vh-5rem)] flex items-center justify-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
+    <section 
+      id="founders" 
+      className="relative scroll-mt-20 py-24 min-h-[calc(100vh-5rem)] flex items-center justify-center bg-fixed bg-center bg-cover"
+      style={{ backgroundImage: "url('/images/hero.jpg')" }}
+    >
+      {/* Light overlay to maintain readability of the dark text while showing the parallax background */}
+      <div className="absolute inset-0 bg-white/95 backdrop-blur-[2px] z-0" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto relative z-10">
         <div className="text-center mb-10">
           <p className="text-sm md:text-base text-secondary font-medium tracking-[0.3em] uppercase mb-4">
             Leadership

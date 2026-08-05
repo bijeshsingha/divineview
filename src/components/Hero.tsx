@@ -6,15 +6,19 @@ import Link from "next/link";
 export default function Hero() {
 
   return (
-    <section id="home" className="relative min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center">
+      {/* Background Video (Fixed Parallax Effect) */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{ clipPath: "inset(0 0 0 0)" }}
+      >
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="object-cover w-full h-full"
+          className="fixed top-0 left-0 w-full h-full object-cover"
+          style={{ zIndex: -1 }}
           onTimeUpdate={(e) => {
             if (e.currentTarget.currentTime >= 6) {
               e.currentTarget.currentTime = 0;
@@ -24,8 +28,8 @@ export default function Hero() {
         >
           <source src="/videos/hero-video.mp4" type="video/mp4" />
         </video>
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/60" />
+        {/* Dark overlay for readability (also fixed so it stays over the video) */}
+        <div className="fixed inset-0 bg-black/60" style={{ zIndex: -1 }} />
       </div>
 
       {/* Content */}
@@ -92,14 +96,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bouncing Down Arrow */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-        <a href="#about" aria-label="Scroll down" className="text-white opacity-80 hover:opacity-100 transition-opacity">
-          <svg className="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </a>
-      </div>
     </section>
   );
 }
