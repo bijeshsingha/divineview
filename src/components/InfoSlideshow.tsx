@@ -11,7 +11,7 @@ const slides = [
     image: "/images/hero.jpg", // Building / Aerial view
   },
   {
-    title: "Executive Luxury",
+    title: "Executive Comfort",
     subtitle: "Experience warm hospitality and sanctuary-like comfort in our pristine executive suites.",
     image: "/images/rooms/exec1.jpg", // Executive Room
   },
@@ -28,7 +28,7 @@ const slides = [
   {
     title: "Explore Guwahati",
     subtitle: "Close to popular tourist destinations like Kamakhya Temple and Assam State Museum, offering a rich cultural experience.",
-    image: "/images/guwahati.jpg", // City / Landmarks
+    image: "/images/guwahati-bg.png", // City / Landmarks
   },
 ];
 
