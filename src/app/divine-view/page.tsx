@@ -5,6 +5,7 @@ import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import HeroBookingWidget from "@/components/HeroBookingWidget";
+import InfoSlideshow from "@/components/InfoSlideshow";
 
 export default function DivineView() {
   return (
@@ -32,6 +33,9 @@ export default function DivineView() {
             <HeroBookingWidget />
           </div>
         </section>
+        
+        <InfoSlideshow />
+        
         <Rooms />
         <Facilities />
         <Reviews />
