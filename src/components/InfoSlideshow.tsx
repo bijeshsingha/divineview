@@ -6,29 +6,29 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    title: "Welcome to Hotel Divine View",
-    subtitle: "Situated in the heart of Guwahati City, offering easy access to business hubs, shopping centers, and local attractions.",
+    title: "Hotel Divine View",
+    subtitle: "A striking presence in the heart of Guwahati, offering easy access to business hubs and local attractions.",
     image: "/images/hero.jpg", // Building / Aerial view
   },
   {
-    title: "Elegant Reception & Corridors",
-    subtitle: "Experience warm hospitality from the moment you step in. Our pristine corridors lead you to your sanctuary of comfort.",
-    image: "/images/rooms/exec1.jpg", // Fallback for reception/corridor until user uploads specific ones
+    title: "Executive Luxury",
+    subtitle: "Experience warm hospitality and sanctuary-like comfort in our pristine executive suites.",
+    image: "/images/rooms/exec1.jpg", // Executive Room
   },
   {
     title: "Comfort and Convenience",
-    subtitle: "Well-appointed rooms providing a relaxing environment, complete with stunning views of the city's landscape.",
-    image: "/images/rooms/dlx1.jpg", // Rooms
+    subtitle: "Well-appointed rooms providing a relaxing environment, complete with modern amenities for a perfect stay.",
+    image: "/images/rooms/dlx1.jpg", // Deluxe Rooms
   },
   {
-    title: "Gateway to Nearby States",
-    subtitle: "Strategically located for exploring nearby states like Meghalaya and Arunachal Pradesh.",
-    image: "/images/meghalaya.jpg", // Access/Gateway
+    title: "Gateway to the Northeast",
+    subtitle: "Strategically located for exploring nearby natural wonders like Meghalaya and Arunachal Pradesh.",
+    image: "/images/meghalaya.jpg", // Nature/Gateway
   },
   {
-    title: "Cultural Landmarks",
+    title: "Explore Guwahati",
     subtitle: "Close to popular tourist destinations like Kamakhya Temple and Assam State Museum, offering a rich cultural experience.",
-    image: "/images/guwahati.jpg", // Building / City
+    image: "/images/guwahati.jpg", // City / Landmarks
   },
 ];
 

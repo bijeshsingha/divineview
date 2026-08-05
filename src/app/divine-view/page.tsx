@@ -34,9 +34,10 @@ export default function DivineView() {
           </div>
         </section>
         
+        <Rooms />
+        
         <InfoSlideshow />
         
-        <Rooms />
         <Facilities />
         <Reviews />
       </main>
