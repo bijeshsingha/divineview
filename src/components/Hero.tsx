@@ -49,7 +49,7 @@ export default function Hero() {
               <div className="flex items-center gap-4">
                 <div className="relative w-24 h-20 md:w-28 md:h-24">
                   <Image 
-                    src="/images/hdv-new-logo-icon.png" 
+                    src="/images/hdv-icon-only.png" 
                     alt="Hotel Divine View Logo" 
                     fill 
                     className="object-contain drop-shadow-md" 
