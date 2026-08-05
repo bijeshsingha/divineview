@@ -46,13 +46,20 @@ export default function Hero() {
           
           <Link href="/divine-view" className="group flex flex-col items-center text-center cursor-pointer px-4">
             <div className="h-24 md:h-32 flex items-center justify-center mb-2 transition-transform duration-300 group-hover:scale-105">
-              <div className="relative w-72 md:w-80 h-24 md:h-32 -mt-2">
-                <Image 
-                  src="/images/hdv-new-logo-horizontal.png" 
-                  alt="Hotel Divine View" 
-                  fill 
-                  className="object-contain drop-shadow-md" 
-                />
+              <div className="flex items-center gap-4">
+                <div className="relative w-24 h-20 md:w-28 md:h-24">
+                  <Image 
+                    src="/images/hdv-new-logo-icon.png" 
+                    alt="Hotel Divine View Logo" 
+                    fill 
+                    className="object-contain drop-shadow-md" 
+                  />
+                </div>
+                <div className="flex flex-col text-left border-l-2 border-white/20 pl-4 py-1">
+                  <span className="text-[10px] md:text-xs font-bold text-gray-300 uppercase tracking-[0.2em] leading-none mb-1.5">Hotel</span>
+                  <span className="text-2xl md:text-4xl font-black text-white uppercase leading-none mb-1.5 drop-shadow-lg tracking-wide">Divine View</span>
+                  <span className="text-xs md:text-sm italic text-gray-300 font-serif tracking-wider">Your Stay in North east</span>
+                </div>
               </div>
             </div>
             <p className="text-xs md:text-sm text-gray-400 tracking-widest uppercase transition-colors duration-300 group-hover:text-white">
