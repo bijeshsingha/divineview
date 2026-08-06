@@ -29,27 +29,23 @@ export default function Founders() {
   return (
     <section 
       id="founders" 
-      className="relative scroll-mt-20 py-24 min-h-[calc(100vh-5rem)] flex items-center justify-center bg-fixed bg-center bg-cover"
-      style={{ backgroundImage: "url('/images/hero.jpg')" }}
+      className="relative scroll-mt-20 py-24 min-h-[calc(100vh-5rem)] flex items-center justify-center bg-[#1F2937]"
     >
-      {/* Light overlay to maintain readability of the dark text while showing the parallax background */}
-      <div className="absolute inset-0 bg-white/95 backdrop-blur-[2px] z-0" />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto relative z-10">
         <div className="text-center mb-10">
-          <p className="text-sm md:text-base text-secondary font-medium tracking-[0.3em] uppercase mb-4">
+          <p className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-4 text-[#B5552A]">
             Leadership
           </p>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
             Meet the Founders
           </h2>
-          <div className="w-16 h-[2px] bg-secondary mx-auto"></div>
+          <div className="w-16 h-[2px] bg-[#B5552A] mx-auto"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {founders.map((founder, index) => (
-            <div key={index} className="flex flex-col bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="relative h-64 sm:h-72 w-full bg-gray-200">
+            <div key={index} className="flex flex-col bg-[#111827] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow border border-white/10">
+              <div className="relative h-64 sm:h-72 w-full bg-gray-800">
                 <Image
                   src={founder.image}
                   alt={founder.name}
@@ -59,10 +55,10 @@ export default function Founders() {
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <div className="mb-3">
-                  <h3 className="text-xl font-serif font-bold text-gray-900 mb-1">{founder.name}</h3>
-                  <p className="text-primary font-medium text-sm">{founder.role}</p>
+                  <h3 className="text-xl font-serif font-bold text-white mb-1">{founder.name}</h3>
+                  <p className="text-[#B5552A] font-medium text-sm">{founder.role}</p>
                 </div>
-                <p className="text-gray-600 leading-relaxed mb-6 font-light text-sm flex-grow">
+                <p className="text-gray-400 leading-relaxed mb-6 font-light text-sm flex-grow">
                   {founder.bio}
                 </p>
                 <div className="flex space-x-4 mt-auto">
@@ -70,7 +66,7 @@ export default function Founders() {
                     <a
                       key={idx}
                       href={social.url}
-                      className="text-gray-400 hover:text-primary transition-colors"
+                      className="text-gray-500 hover:text-[#B5552A] transition-colors"
                       aria-label={social.name}
                     >
                       <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">

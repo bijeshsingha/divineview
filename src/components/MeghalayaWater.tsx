@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 
 export default function MeghalayaWater() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,7 +38,7 @@ export default function MeghalayaWater() {
         </div>
 
         {/* Brightness overlay */}
-        <motion.div
+        <m.div
           style={{ opacity: overlayOpacity }}
           className="absolute inset-0 bg-black z-0"
         />
@@ -49,7 +49,7 @@ export default function MeghalayaWater() {
         <div className="w-full flex flex-col items-center mt-[35vh] px-4 max-w-4xl mx-auto z-10 pointer-events-auto h-[145vh]">
 
           {/* Text block */}
-          <motion.div
+          <m.div
             style={{ opacity: textOpacity }}
             className="text-center w-full mb-8"
           >
@@ -63,7 +63,7 @@ export default function MeghalayaWater() {
             <p className="text-lg md:text-2xl text-gray-200 font-light max-w-2xl mx-auto drop-shadow-md">
               Cascading falls, mist-covered valleys, and the raw beauty of Meghalaya's waterways.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Sticky button */}
           <a
@@ -88,3 +88,4 @@ export default function MeghalayaWater() {
     </section>
   );
 }
+

@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import AmbarishNavbar from "@/components/AmbarishNavbar";
 import AmbarishFooter from "@/components/AmbarishFooter";
+import PackagesSection from "@/components/PackagesSection";
 
 const BookingFlow = dynamic(() => import("@/components/BookingFlow"));
 
@@ -15,6 +16,11 @@ export default function AmbarishBookPage() {
           <Suspense fallback={<div className="text-center py-20 text-gray-500 font-medium">Loading booking engine...</div>}>
             <BookingFlow hotel="ambarish" />
           </Suspense>
+          
+          {/* Upsell Packages */}
+          <div className="mt-16">
+            <PackagesSection hotel="ambarish" />
+          </div>
         </div>
       </main>
       <AmbarishFooter />

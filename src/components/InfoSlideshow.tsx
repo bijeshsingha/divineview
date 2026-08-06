@@ -6,29 +6,34 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    title: "Hotel Divine View",
-    subtitle: "A striking presence in the heart of Guwahati, offering easy access to business hubs and local attractions.",
-    image: "/images/hero.jpg", // Building / Aerial view
-  },
-  {
-    title: "Executive Comfort",
+    title: "Executive Suite",
     subtitle: "Experience warm hospitality and sanctuary-like comfort in our pristine executive suites.",
-    image: "/images/rooms/exec1.jpg", // Executive Room
+    image1: "/images/rooms/exec1.jpg",
+    image2: "/images/rooms/exec2.jpg",
   },
   {
-    title: "Comfort and Convenience",
+    title: "Deluxe Comfort",
     subtitle: "Well-appointed rooms providing a relaxing environment, complete with modern amenities for a perfect stay.",
-    image: "/images/rooms/dlx1.jpg", // Deluxe Rooms
+    image1: "/images/rooms/dlx1.jpg",
+    image2: "/images/rooms/dlx2.jpg",
   },
   {
-    title: "Gateway to the Northeast",
-    subtitle: "Strategically located for exploring nearby natural wonders like Meghalaya and Arunachal Pradesh.",
-    image: "/images/meghalaya.jpg", // Nature/Gateway
+    title: "Family Room",
+    subtitle: "Spacious accommodations designed to keep the whole family comfortable and connected.",
+    image1: "/images/rooms/fam1.jpg",
+    image2: "/images/rooms/fam2.jpg",
   },
   {
-    title: "Explore Guwahati",
-    subtitle: "Close to popular tourist destinations like Kamakhya Temple and Assam State Museum, offering a rich cultural experience.",
-    image: "/images/guwahati-bg.png", // City / Landmarks
+    title: "Executive Excellence",
+    subtitle: "A premium experience with dedicated workspaces and elegant decor.",
+    image1: "/images/rooms/exec3.jpg",
+    image2: "/images/rooms/exec4.jpg",
+  },
+  {
+    title: "Standard Comfort",
+    subtitle: "Cozy, efficient, and exceptionally clean rooms for the smart traveler.",
+    image1: "/images/rooms/std2.jpg",
+    image2: "/images/rooms/std3.jpg",
   },
 ];
 
@@ -49,11 +54,6 @@ export default function InfoSlideshow() {
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black group">
-      {/* Top blending gradient (blends with Rooms bg-gray-50) */}
-      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-gray-50 to-transparent z-20 pointer-events-none"></div>
-
-      {/* Bottom blending gradient (blends with Facilities bg-white) */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none"></div>
 
       {/* Images */}
       {slides.map((slide, idx) => (
@@ -63,14 +63,25 @@ export default function InfoSlideshow() {
             idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
         >
-          <div className="absolute inset-0 w-full h-full">
-            <Image
-              src={slide.image}
-              alt={slide.title}
-              fill
-              className="object-cover"
-              priority={idx === 0}
-            />
+          <div className="absolute inset-0 w-full h-full flex flex-col md:flex-row">
+            <div className="relative w-full md:w-1/2 h-1/2 md:h-full">
+              <Image
+                src={slide.image1}
+                alt={`${slide.title} - View 1`}
+                fill
+                className="object-cover"
+                priority={idx === 0}
+              />
+            </div>
+            <div className="relative w-full md:w-1/2 h-1/2 md:h-full">
+              <Image
+                src={slide.image2}
+                alt={`${slide.title} - View 2`}
+                fill
+                className="object-cover"
+                priority={idx === 0}
+              />
+            </div>
           </div>
           {/* Elegant Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end">

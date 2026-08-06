@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import DivineViewNavbar from "@/components/DivineViewNavbar";
 import Footer from "@/components/Footer";
+import PackagesSection from "@/components/PackagesSection";
 
 const BookingFlow = dynamic(() => import("@/components/BookingFlow"));
 
@@ -15,6 +16,11 @@ export default function BookPage() {
           <Suspense fallback={<div className="text-center py-20 text-gray-500 font-medium">Loading booking engine...</div>}>
             <BookingFlow />
           </Suspense>
+          
+          {/* Upsell Packages */}
+          <div className="mt-16">
+            <PackagesSection hotel="divine-view" />
+          </div>
         </div>
       </main>
       <Footer />

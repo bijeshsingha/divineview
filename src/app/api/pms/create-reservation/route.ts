@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    // data contains: paymentId, orderId, cart (array of rooms), checkIn, checkOut, guestDetails
+    // data contains: paymentId, orderId, cart (array of rooms), checkIn, checkOut, guestDetails, amount_paid, balance_due
     
     // In production, this pushes data to the PMS (e.g. Hotelogix, Cloudbeds, etc)
     // For now, we simulate success and return a confirmation ID

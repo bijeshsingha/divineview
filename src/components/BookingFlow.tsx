@@ -37,6 +37,7 @@ const Counter = ({ label, value, onChange, min = 0 }: any) => (
 
 export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine-view" | "ambarish" }) {
   const [isMounted, setIsMounted] = useState(false);
+  const [paymentType, setPaymentType] = useState<"partial" | "full">("partial");
   
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -205,7 +206,7 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
       const orderRes = await fetch("/api/razorpay/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: totalPrice })
+        body: JSON.stringify({ amount: totalPrice, paymentType })
       });
       const order = await orderRes.json();
 
@@ -225,6 +226,8 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
         order_id: order.id,
         handler: async function (response: any) {
           try {
+            const amount_paid = paymentType === "partial" ? Math.round(totalPrice / 2) : totalPrice;
+            const balance_due = totalPrice - amount_paid;
             const pmsRes = await fetch("/api/pms/create-reservation", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -233,7 +236,9 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 orderId: response.razorpay_order_id,
                 cart,
                 checkIn, checkOut,
-                guestDetails: { name: guestName, email: guestEmail, phone: guestPhone }
+                guestDetails: { name: guestName, email: guestEmail, phone: guestPhone },
+                amount_paid,
+                balance_due
               })
             });
             const pmsData = await pmsRes.json();
@@ -467,6 +472,20 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 </div>
               )}
 
+              {/* Payment Type Selection */}
+              {cart.length > 0 && nights > 0 && (
+                <div className="mt-4 mb-2 space-y-3">
+                  <label className="flex items-center space-x-3 cursor-pointer p-3 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors">
+                    <input type="radio" name="paymentType" value="partial" checked={paymentType === "partial"} onChange={() => setPaymentType("partial")} className="w-4 h-4 text-primary focus:ring-primary border-gray-300" />
+                    <span className="text-sm font-medium text-gray-900">Pay 50% Advance to Confirm</span>
+                  </label>
+                  <label className="flex items-center space-x-3 cursor-pointer p-3 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors">
+                    <input type="radio" name="paymentType" value="full" checked={paymentType === "full"} onChange={() => setPaymentType("full")} className="w-4 h-4 text-primary focus:ring-primary border-gray-300" />
+                    <span className="text-sm font-medium text-gray-900">Pay Full Amount</span>
+                  </label>
+                </div>
+              )}
+
               {/* CTA */}
               <Button 
                 onClick={handlePayment} 
@@ -474,8 +493,13 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
                 className={`mt-2 ${hotel === "ambarish" ? "bg-gray-900 hover:bg-black" : "bg-[#0a3824] hover:bg-[#07291a]"} text-white rounded-full py-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-bold text-lg`}
                 fullWidth
               >
-                {isProcessing ? "Processing..." : "Proceed to Pay"}
+                {isProcessing ? "Processing..." : `Pay ₹${paymentType === "partial" ? Math.round(totalPrice / 2) : totalPrice} via Razorpay`}
               </Button>
+              {paymentType === "partial" && cart.length > 0 && nights > 0 && (
+                <p className="text-xs text-center text-[#B5552A] mt-2 font-medium">
+                  Secure your room now. Pay the remaining balance at the front desk.
+                </p>
+              )}
               
               <p className="text-xs text-center text-gray-500 mt-2 flex items-center justify-center">
                 <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
@@ -504,7 +528,7 @@ export default function BookingFlow({ hotel = "divine-view" }: { hotel?: "divine
             disabled={isProcessing} 
             className={`${cart.length === 0 ? 'bg-gray-900' : hotelColor} text-white font-bold py-3 px-8 rounded-full shadow-md`}
           >
-            {isProcessing ? "Wait..." : cart.length === 0 ? "Add Rooms" : "Pay Now"}
+            {isProcessing ? "Wait..." : cart.length === 0 ? "Add Rooms" : `Pay ₹${paymentType === "partial" ? Math.round(totalPrice / 2) : totalPrice}`}
           </button>
         </div>
         {cart.length > 0 && (

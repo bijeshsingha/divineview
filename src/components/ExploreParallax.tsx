@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 
 const VideoParallaxBackground = ({ src, zIndex }: { src: string, zIndex: number }) => {
   return (
@@ -29,7 +29,7 @@ const REGIONS = [
     title: "Discover Meghalaya",
     subtitle: "The Abode of Clouds",
     description: "Experience the living root bridges, pristine waterfalls, and the mystic charm of Cherrapunji.",
-    link: "https://www.divineviewtours.com/explore/packages"
+    link: "/tours"
   }
 ];
 
@@ -62,7 +62,7 @@ export default function ExploreParallax() {
       <div className="absolute top-0 w-full h-[200vh]">
         <div className="sticky top-0 w-full h-screen overflow-hidden">
           <VideoParallaxBackground src="/videos/meghalaya-bg.mp4" zIndex={-2} />
-          <motion.div 
+          <m.div 
             style={{ opacity: overlayOpacity }}
             className="absolute inset-0 bg-black pointer-events-none z-0" 
           />
@@ -76,7 +76,7 @@ export default function ExploreParallax() {
       <div className="absolute top-[200vh] w-full h-[200vh]">
         <div className="sticky top-0 w-full h-screen overflow-hidden">
           <VideoParallaxBackground src="/videos/meghalaya-water.mp4" zIndex={-1} />
-          <motion.div 
+          <m.div 
             style={{ opacity: overlayOpacity }}
             className="absolute inset-0 bg-black pointer-events-none z-0" 
           />
@@ -95,7 +95,7 @@ export default function ExploreParallax() {
         <div className="w-full flex flex-col items-center mt-[35vh] px-4 max-w-4xl mx-auto pointer-events-auto h-[345vh]">
           
           {/* Animated Text Block - Native scroll up, Framer Motion fade out */}
-          <motion.div 
+          <m.div 
             style={{ opacity: textOpacity }}
             className="text-center w-full mb-8"
           >
@@ -109,15 +109,13 @@ export default function ExploreParallax() {
             <p className="text-lg md:text-2xl text-gray-200 font-light max-w-2xl mx-auto drop-shadow-md">
               {region.description}
             </p>
-          </motion.div>
+          </m.div>
           
           {/* Native Sticky Button - ZERO LAG. 
               Scrolls naturally with text, then sticks under the navbar for BOTH video sections! */}
           <a
             href={region.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="sticky top-28 inline-flex items-center px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-medium transition-all duration-300 backdrop-blur-sm rounded-full tracking-wider uppercase text-sm shadow-2xl shadow-black/50"
+            className="sticky top-28 inline-flex items-center px-8 py-4 bg-[#B5552A] hover:bg-[#9B4423] border border-[#B5552A] text-white font-semibold transition-all duration-300 rounded-full tracking-wider uppercase text-sm shadow-2xl shadow-black/50"
           >
             View Itineraries
             <svg

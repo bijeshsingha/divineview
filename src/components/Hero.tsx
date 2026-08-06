@@ -17,6 +17,7 @@ export default function Hero() {
           loop
           muted
           playsInline
+          preload="auto"
           className="fixed top-0 left-0 w-full h-full object-cover"
           style={{ zIndex: -1 }}
           onTimeUpdate={(e) => {
@@ -56,6 +57,7 @@ export default function Hero() {
                     src="/images/hdv-icon-only.png" 
                     alt="Hotel Divine View Logo" 
                     fill 
+                    priority
                     className="object-contain drop-shadow-md" 
                   />
                 </div>
@@ -83,6 +85,7 @@ export default function Hero() {
                   src="/images/ambarish-logo.png" 
                   alt="Hotel Ambarish Grand Residency" 
                   fill 
+                  priority
                   className="object-contain drop-shadow-md" 
                 />
               </div>

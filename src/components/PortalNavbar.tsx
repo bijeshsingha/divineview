@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 export default function PortalNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -146,7 +146,7 @@ export default function PortalNavbar() {
                   
                   <AnimatePresence>
                     {hasSubLinks && isExpanded && (
-                      <motion.div 
+                      <m.div 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -164,7 +164,7 @@ export default function PortalNavbar() {
                             </Link>
                           ))}
                         </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 </div>
@@ -185,3 +185,4 @@ export default function PortalNavbar() {
     </>
   );
 }
+

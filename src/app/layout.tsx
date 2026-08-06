@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display, Alfa_Slab_One } from "next/font/google";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import SmoothScroll from "@/components/SmoothScroll";
+import FramerMotionProvider from "@/components/FramerMotionProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -62,7 +63,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-background text-foreground antialiased">
         <SmoothScroll>
-          {children}
+          <FramerMotionProvider>
+            {children}
+          </FramerMotionProvider>
         </SmoothScroll>
       </body>
       <GoogleAnalytics gaId="G-BL39FSNVXX" />

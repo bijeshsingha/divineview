@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
 const PLACES = [
@@ -21,7 +21,7 @@ const PLACES = [
     id: "kaziranga",
     title: "Gateway to Wildlife",
     description: "Your starting point for Northeast adventures.",
-    image: "/images/readymade-tour.jpg",
+    image: "/images/kaziranga-wildlife.jpg",
   }
 ];
 
@@ -32,17 +32,14 @@ export default function ExploreGuwahati() {
     offset: ["start start", "end end"]
   });
 
-  // Text: scrolls up and fades out as first image appears. Stays GONE for the rest of the scroll.
-  // Opacity is clamped at 0 from 0.3 onward - it will never reappear.
-  const textOpacity = useTransform(scrollYProgress, [0.1, 0.3, 1.0], [1, 0, 0]);
-  const textY = useTransform(scrollYProgress, [0.1, 0.35], ["0vh", "-50vh"]);
+  // Text fades out quickly, then images slide in sequentially
+  const textOpacity = useTransform(scrollYProgress, [0.05, 0.2, 1.0], [1, 0, 0]);
+  const textY = useTransform(scrollYProgress, [0.05, 0.25], ["0vh", "-50vh"]);
 
-  // Image animations (Desktop only): 
-  // STRICTLY SEQUENTIAL: One image finishes completely before the next begins.
-  // img1: finishes at 0.35. img2 starts at 0.4. img2 finishes at 0.65. img3 starts at 0.7.
-  const img1Y = useTransform(scrollYProgress, [0.1, 0.35], ["100%", "0%"]);
+  // Images slide up sequentially — tighter keypoints for 200vh
+  const img1Y = useTransform(scrollYProgress, [0.15, 0.4], ["100%", "0%"]);
   const img2Y = useTransform(scrollYProgress, [0.4, 0.65], ["100%", "0%"]);
-  const img3Y = useTransform(scrollYProgress, [0.7, 0.95], ["100%", "0%"]);
+  const img3Y = useTransform(scrollYProgress, [0.65, 0.9], ["100%", "0%"]);
 
   return (
     <>
@@ -56,7 +53,7 @@ export default function ExploreGuwahati() {
         <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center items-center">
           
           {/* Title Section (Centered, scrolls up and fades out, stays gone) */}
-          <motion.div 
+          <m.div 
             style={{ opacity: textOpacity, y: textY }}
             className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center max-w-4xl mx-auto z-10 pointer-events-none"
           >
@@ -70,37 +67,37 @@ export default function ExploreGuwahati() {
             <p className="text-lg md:text-xl text-gray-600 font-light">
               From the spiritual heights of Kamakhya Temple to the serene Brahmaputra river cruises.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* 3 Parallel Images (Pulling up slowly one by one) */}
           <div className="absolute inset-0 flex flex-row w-full h-full z-20 pointer-events-none">
             
-            <motion.div style={{ y: img1Y }} className="relative w-1/3 h-full group pointer-events-auto">
+            <m.div style={{ y: img1Y }} className="relative w-1/3 h-full group pointer-events-auto">
               <Image src={PLACES[0].image} alt={PLACES[0].title} fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="absolute bottom-0 left-0 w-full p-10 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <h3 className="text-3xl font-serif font-bold text-white mb-2">{PLACES[0].title}</h3>
                 <p className="text-base text-gray-300 font-light">{PLACES[0].description}</p>
               </div>
-            </motion.div>
+            </m.div>
 
-            <motion.div style={{ y: img2Y }} className="relative w-1/3 h-full group pointer-events-auto">
+            <m.div style={{ y: img2Y }} className="relative w-1/3 h-full group pointer-events-auto">
               <Image src={PLACES[1].image} alt={PLACES[1].title} fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="absolute bottom-0 left-0 w-full p-10 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <h3 className="text-3xl font-serif font-bold text-white mb-2">{PLACES[1].title}</h3>
                 <p className="text-base text-gray-300 font-light">{PLACES[1].description}</p>
               </div>
-            </motion.div>
+            </m.div>
 
-            <motion.div style={{ y: img3Y }} className="relative w-1/3 h-full group pointer-events-auto">
+            <m.div style={{ y: img3Y }} className="relative w-1/3 h-full group pointer-events-auto">
               <Image src={PLACES[2].image} alt={PLACES[2].title} fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="absolute bottom-0 left-0 w-full p-10 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <h3 className="text-3xl font-serif font-bold text-white mb-2">{PLACES[2].title}</h3>
                 <p className="text-base text-gray-300 font-light">{PLACES[2].description}</p>
               </div>
-            </motion.div>
+            </m.div>
 
           </div>
         </div>
@@ -127,7 +124,7 @@ export default function ExploreGuwahati() {
 
         <div className="flex flex-col w-full h-auto">
           {PLACES.map((place, index) => (
-            <motion.div
+            <m.div
               key={place.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -141,7 +138,7 @@ export default function ExploreGuwahati() {
                 <h3 className="text-2xl font-serif font-bold text-white mb-2">{place.title}</h3>
                 <p className="text-sm text-gray-300 font-light">{place.description}</p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </section>

@@ -9,11 +9,13 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { amount, currency = "INR", receipt } = await request.json();
+    const { amount, currency = "INR", receipt, paymentType = "full" } = await request.json();
 
     if (!amount) {
       return NextResponse.json({ error: "Amount is required" }, { status: 400 });
     }
+
+    const finalAmount = paymentType === "partial" ? Math.round(amount / 2) : amount;
 
     // SIMULATED RAZORPAY ORDER CREATION
     // In production, you would do:
@@ -24,7 +26,7 @@ export async function POST(request: Request) {
 
     const dummyOrder = {
       id: `order_sim_${Math.random().toString(36).substring(2, 10)}`,
-      amount: amount * 100, // Razorpay uses paise
+      amount: finalAmount * 100, // Razorpay uses paise
       currency,
       receipt,
       status: "created"
