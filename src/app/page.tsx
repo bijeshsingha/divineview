@@ -5,14 +5,18 @@ import ExploreParallax from "@/components/ExploreParallax";
 import JourneyScroll from "@/components/JourneyScroll";
 import OurPortfolio from "@/components/OurPortfolio";
 import PortalFooter from "@/components/PortalFooter";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export default function Home() {
   return (
     <>
-      <PortalNavbar />
-      <main className="flex-grow">
+      <main className="bg-white min-h-screen">
+        {/* Portal Navbar overrides the default one to not conflict with hotel themes */}
+        <PortalNavbar />
+        
         <Hero />
-        {/* Journey Scroll — Our Story + Meet the Founders */}
+        
+        {/* Journey Scroll */}
         <JourneyScroll />
 
         {/* Portfolio - placed right after founders */}
@@ -21,12 +25,11 @@ export default function Home() {
         {/* Explore Guwahati Details */}
         <ExploreGuwahati />
 
-        {/* Explore Section with Parallax */}
+        {/* Parallax Explore Section (At the end) */}
         <ExploreParallax />
       </main>
       <PortalFooter />
+      <ScrollToTopButton />
     </>
   );
 }
-
-
